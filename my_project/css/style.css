@@ -1,0 +1,125 @@
+@font-face {
+  font-family: 'icomoon';
+  src: url("../fonts/icomoon/icomoon.eot?srf3rx");
+  src: url("../fonts/icomoon/icomoon.eot?srf3rx#iefix") format("embedded-opentype"), url("../fonts/icomoon/icomoon.ttf?srf3rx") format("truetype"), url("../fonts/icomoon/icomoon.woff?srf3rx") format("woff"), url("../fonts/icomoon/icomoon.svg?srf3rx#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/* =======================================================
+*
+* 	Template Style 
+*
+* ======================================================= */
+body {
+  font-family: "Work Sans", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #828282;
+  background: #fff;
+}
+
+#page {
+  position: relative;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+.offcanvas #page {
+  overflow: hidden;
+  position: absolute;
+}
+.offcanvas #page:after {
+  -webkit-transition: 2s;
+  -o-transition: 2s;
+  transition: 2s;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 101;
+  background: rgba(0, 0, 0, 0.7);
+  content: "";
+}
+
+a {
+  color: #F85A16;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+a:hover, a:active, a:focus {
+  color: #F85A16;
+  outline: none;
+  text-decoration: none;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+h1, h2, h3, h4, h5, h6, figure {
+  color: #000;
+  font-family: "Work Sans", Arial, sans-serif;
+  font-weight: 400;
+  margin: 0 0 20px 0;
+}
+
+::-webkit-selection {
+  color: #fff;
+  background: #F85A16;
+}
+
+::-moz-selection {
+  color: #fff;
+  background: #F85A16;
+}
+
+::selection {
+  color: #fff;
+  background: #F85A16;
+}
+
+.top-menu li:hover > ul { 
+  opacity: 1; 
+}
+
+.top-menu li li { 
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  -webkit-transition: height .25s ease .1s;
+  transition: height .25s ease .1s; 
+}
+
+.top-menu ul li{
+  position: relative;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: inline;
+
+}
+.top-menu ul li:hover > li{
+    height: 36px;
+    overflow: visible;
+    padding: 0;
+}
+
+.top-menu ul li a {
+    font-size: 13px;
+    padding: 30px 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+}
+
+
+
+/*# sourceMappingURL=style.css.map */
