@@ -1,7 +1,18 @@
+#friend-page-body{
+	max-width: 1000px;
+	margin-left:auto; 
+	margin-right:auto;
+}
+
+#friend-page-body .userinfo{
+	padding: 5%;
+}
+
 #page-header nav li{
 	margin-left: 8px;
 }
 #page-body{
+	
 	background: url(../images/img_bg_2.jpg) no-repeat;
 	background-size:100% 100%;
 	height: 650px;
