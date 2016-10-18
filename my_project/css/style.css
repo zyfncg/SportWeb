@@ -9,7 +9,7 @@
 }
 
 #page-header nav li{
-	margin-left: 8px;
+	margin-right: 15px;
 }
 #page-body{
 	
@@ -20,4 +20,24 @@
 }
 .homepage{
 	margin-top: 240px;
+}
+.tc{
+	text-align: center;
+}
+.user-header{
+	width: 240px;
+	padding-top: 20px;
+	margin-left:auto; 
+	margin-right:auto;
+}
+.user-header .user-header-img{
+	width: 100%;
+	
+}
+.user-header .user-header-img img{
+	page-break-inside: avoid;
+	max-width: 100% !important;
+	margin-left:auto; 
+	margin-right:auto;
+	border-radius: 6px;
 }
