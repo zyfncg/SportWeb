@@ -42,32 +42,6 @@ img{
 .activity-list li{
 	margin-top: 15px;
 }
-.homepage{
-	margin-top: 240px;
-}
-.match-nav-list{
-	margin-top: 30px;
-}
-.tc{
-	text-align: center;
-}
-.user-header{
-	width: 240px;
-	padding-top: 20px;
-	margin-left:auto; 
-	margin-right:auto;
-}
-.user-header .user-header-img{
-	width: 100%;
-	
-}
-.user-header .user-header-img img{
-	page-break-inside: avoid;
-	max-width: 100% !important;
-	margin-left:auto; 
-	margin-right:auto;
-	border-radius: 6px;
-}
 .friend{
 	padding-left: 0;
 	padding-right: 20px;
@@ -100,4 +74,34 @@ img{
 	margin-bottom: auto;
 	margin-top: auto;
 	padding-top:10px;
+}
+.homepage{
+	margin-top: 240px;
+}
+.match-nav-list{
+	margin-top: 30px;
+}
+.tc{
+	text-align: center;
+}
+.user-header{
+	width: 240px;
+	padding-top: 20px;
+	margin-left:auto; 
+	margin-right:auto;
+}
+.user-header .user-header-img{
+	width: 100%;
+	
+}
+.user-header .user-header-img img{
+	page-break-inside: avoid;
+	max-width: 100% !important;
+	margin-left:auto; 
+	margin-right:auto;
+	border-radius: 6px;
+}
+
+.weak_sport{
+	padding-left: 30px;
 }

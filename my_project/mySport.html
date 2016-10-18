@@ -22,6 +22,7 @@
 	<meta name="twitter:card" content="" />
 
 	<link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<script type="text/javascript" src="js/ichart.1.2.min.js"></script>
 	
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="css/style.css">
@@ -119,20 +120,10 @@
 					<h1>本周的运动情况</h1>
 					<div class="weak_sport" style="height: 240px">
 						<div class="run-distance col-md-6">
-							<div class="runImg">
-								<img class="img-circle img-responsive" src="images/run1.png">
-							</div>
-							<div class="runText tc">
-								<p>本周运动里程 <span>10.2km</span></p>
-							</div>
+							<div id='canvasDiv1'></div>
 						</div>
 						<div class="run-time col-md-6">
-							<div class="timeStatistic">
-								<img class="img-circle img-responsive" src="images/time.jpg">
-							</div>
-							<div class="runText tc">
-								<p>本周运动时间分布</p>
-							</div>
+							<div id='canvasDiv2'></div>
 						</div>
 					</div>
 					
@@ -183,7 +174,101 @@
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- 包括所有已编译的插件 -->
     <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+				$(function(){
+					var distanceData = [
+					        	{name : '星期一',value : 12.75,color:'#76a871'},
+					        	{name : '星期二',value : 29.84,color:'#76a871'},
+					        	{name : '星期三',value : 24.88,color:'#76a871'},
+					        	{name : '星期四',value : 6.77,color:'#76a871'},
+					        	{name : '星期五',value : 2.02,color:'#76a871'},
+					        	{name : '星期六',value : 3.73,color:'#76a871'},
+					        	{name : '星期日',value : 22.73,color:'#76a871'}
+				        	];
+				    var timeData = [
+					        	{name : '星期一',value : 120,color:'#76a871'},
+					        	{name : '星期二',value : 20,color:'#76a871'},
+					        	{name : '星期三',value : 24,color:'#76a871'},
+					        	{name : '星期四',value : 177,color:'#76a871'},
+					        	{name : '星期五',value : 27,color:'#76a871'},
+					        	{name : '星期六',value : 73,color:'#76a871'},
+					        	{name : '星期日',value : 83,color:'#76a871'}
+				        	];
+		        	
+					var chart1 = new iChart.Column2D({
+						render : 'canvasDiv1',
+						data: distanceData,
+						footnote : {
+							text : '本周运动里程分布',
+							color : '#909090',
+							fontsize : 16,
+							textAlign:"center",
 
+						},
+						shadow:true,//激活阴影
+						shadow_color:'#c7c7c7',//设置阴影颜色
+						decimalsnum:2,
+						width : 400,
+						height : 300,
+						border: 11,
+						align:"center",
+            			offsetx:16,
+            			offsety:-10,
+						coordinate:{
+							background_color:'#fefefe',
+							scale:[{
+								 position:'left',	
+								 start_scale:0,
+								 end_scale:16,
+								 scale_space:2,
+								 listeners:{
+									parseText:function(t,x,y){
+										return {text:t+"km"}
+									}
+								}
+							}]
+						}
+					});
+
+					var chart2 = new iChart.Column2D({
+						render : 'canvasDiv2',
+						data: timeData,
+						footnote : {
+							text : '本周运动时间分布',
+							color : '#909090',
+							fontsize : 16,
+							textAlign:"center",
+
+						},
+						shadow:true,//激活阴影
+						shadow_color:'#c7c7c7',//设置阴影颜色
+						decimalsnum:2,
+						width : 400,
+						height : 300,
+						border: 0,
+						align:"center",
+            			offsetx:16,
+            			offsety:-10,
+						coordinate:{
+							background_color:'#fefefe',
+							scale:[{
+								 position:'left',	
+								 start_scale:0,
+								 end_scale:320,
+								 scale_space: 40,
+								 listeners:{
+									parseText:function(t,x,y){
+										return {text:t+"m"}
+									}
+								}
+							}]
+						}
+					});
+					chart1.draw();
+					chart2.draw();
+			});
+				
+	</script>
 	</body>
 </html>
 
