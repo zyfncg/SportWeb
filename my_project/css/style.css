@@ -9,19 +9,7 @@ img{
 	margin-left:auto; 
 	margin-right:auto;
 }
-#page-body{
-	max-width: 1000px;
-	margin-left:auto; 
-	margin-right:auto;
-}
 
-#page-body .userinfo{
-	padding: 5%;
-}
-
-#page-header nav li{
-	margin-right: 15px;
-}
 #home-page-body{
 	
 	background: url(../images/img_bg_2.jpg) no-repeat;
@@ -29,6 +17,21 @@ img{
 	height: 650px;
 	width: 100%;
 }
+#page-body{
+	max-width: 1000px;
+	margin-left:auto; 
+	margin-right:auto;
+}
+
+#page-body .userinfo{
+	padding: 10px;
+	margin: 20px;
+}
+
+#page-header nav li{
+	margin-right: 15px;
+}
+
 .activity{
 	background: #36BD9C;
 }
@@ -55,6 +58,22 @@ img{
   -ms-backface-visibility:hidden; /* Internet Explorer */
 }
 
+.col-center-block {
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.creatorInfo{
+	margin: 10px 20px;
+}
+.member{
+	margin: 10px;
+	padding: 2px;
+}
+.follow-list li{
+	margin-top: 15px;
+}
 .match-nav-list dropdown{
    display: inline-block;
    margin-top: 20px; 
@@ -143,7 +162,11 @@ img{
 	padding-top:10px;
 }
 .homepage{
-	margin-top: 240px;
+	padding-top: 240px;
+	
+}
+.homepage h1{
+	color: #ffffff
 }
 .match-nav-list{
 	margin-top: 30px;
@@ -167,6 +190,8 @@ img{
 	margin-left:auto; 
 	margin-right:auto;
 	border-radius: 6px;
+	min-height: 100px;
+	max-height: 160px;
 }
 
 .weak_sport{
