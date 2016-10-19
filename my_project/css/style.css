@@ -162,11 +162,27 @@ img{
 	padding-top:10px;
 }
 .homepage{
-	padding-top: 240px;
-	
+	padding-top: 200px;
+	max-width: 800px;
+	margin-left:auto;
+	margin-right:auto;
 }
 .homepage h1{
-	color: #ffffff
+	
+	color: #ffffff;
+}
+.homepage label{
+	height: 40px;
+	width: 100;
+	border-radius: 8px;
+	background-color: #F85A16;
+}
+.infoEdit .row{
+	margin: 20px auto;
+}
+.info-page-body{
+	max-width: 900px;
+	margin: 50px auto;
 }
 .match-nav-list{
 	margin-top: 30px;
