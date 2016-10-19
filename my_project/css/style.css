@@ -9,12 +9,6 @@ img{
 	margin-left:auto; 
 	margin-right:auto;
 }
-#my_pie_com_p {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-}
 #page-body{
 	max-width: 1000px;
 	margin-left:auto; 
@@ -35,6 +29,10 @@ img{
 	height: 650px;
 	width: 100%;
 }
+.activity{
+	background: #36BD9C;
+}
+
 .activity-list{
 	margin: 5px;
 	padding: 5px;
@@ -42,6 +40,75 @@ img{
 .activity-list li{
 	margin-top: 15px;
 }
+
+.animate{
+  padding: 0;
+  margin: 0;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  -ms-transition: all .3s;
+  -ms-transition: all .3s;
+  transition: all .3s;  
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden; /* Chrome and Safari */
+  -moz-backface-visibility:hidden; /* Firefox */
+  -ms-backface-visibility:hidden; /* Internet Explorer */
+}
+
+.match-nav-list dropdown{
+   display: inline-block;
+   margin-top: 20px; 
+   margin-left: 0;
+   margin-right: 0;
+}
+.match-nav-list label, .match-nav-list dropdown ul li{
+  display: block;
+  width: 200px;
+  background: #ECF0F1;
+  padding: 15px 20px;
+  margin-left: 50px;
+  margin-right: auto;
+}
+.match-nav-list label:hover, .match-nav-list dropdown ul li:hover{
+  background: #1ABC9C;
+  color: white;
+  cursor: pointer;
+}
+.match-nav-list label{
+  color: #1ABC9C;
+  border-left: 4px solid #1ABC9C;
+  border-radius: 0 5px 0 0; 
+  position: relative;
+  z-index: 2;
+}
+.match-nav-list dropdown input{
+  display: none;
+}
+.match-nav-list dropdown input ~ ul{
+  position: relative;
+  visibility: hidden;
+  opacity: 0;
+  top: -20px;
+  z-index: 1;
+}
+.match-nav-list dropdown input:checked + label{
+  background: #1ABC9C;
+  color: white;
+}
+
+.match-nav-list dropdown input:checked ~ ul{
+  visibility: visible;
+  opacity: 1;
+  top: 0;
+}
+.fa{
+ font-size: .8em;
+  line-height: 22px !important;
+}
+.float-right{
+  float: right;
+}
+
 .friend{
 	padding-left: 0;
 	padding-right: 20px;
@@ -104,4 +171,22 @@ img{
 
 .weak_sport{
 	padding-left: 30px;
+}
+
+$colors: #E74C3C, #0072B5, #2C3E50;
+
+@for $i from 1 through length($colors) {
+  dropdown ul li:nth-child(#{$i}) {
+    border-left: 4px solid nth($colors, $i);
+    .fa{
+      color: nth($colors, $i);
+    }
+    &:hover {
+        background: nth($colors, $i);
+        color: white;
+      .fa{
+        color: white; 
+      }
+    }
+  }
 }
