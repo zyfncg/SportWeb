@@ -25,6 +25,7 @@
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/tabs.css">
+	<link type="text/css" rel="stylesheet" href="css/fileinput.min.css" />
 
 
 	<!-- FOR IE9 below -->
@@ -116,14 +117,20 @@
 	              			</div>
 	              		</div>
 	              		<div class="row">
-	              			<button class="infosave col-md-2 col-md-offset-2">保存</button>
+	              			<button class="infosave col-md-2 col-md-offset-2 btn">保存</button>
 	              		</div>
 	              	</div>
 	          </div>
 	        </div>
 	        <div class="swiper-slide">
 	            <div class="content-slide">
-	             tab内容二
+	             	<div class="user-picture" style="width: 60%,margin: 20px auto">
+	        			<form enctype="multipart/form-data">
+			                <input id="userPic" type="file" name="image" class="projectfile" value="${deal.image}">
+			                <br>
+			                <button type="submit" class="btn btn-primary">保存</button>
+			            </form>
+	             	</div>
 	            </div>
 	        </div>
 	      </div>	
@@ -134,8 +141,11 @@
 	<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- 包括所有已编译的插件 -->
+
+    <script type="text/javascript" src="js/fileinput.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/idangerous.swiper.min.js"></script>
+    
     <script>
 		var tabsSwiper = new Swiper('.swiper-container',{
 			speed:500,
@@ -155,6 +165,34 @@
 		$(".tabs a").click(function(e){
 			e.preventDefault();
 		});
+
+
+
+		$(".projectfile").fileinput({
+		initialPreview: [
+            'images/user1.jpg'
+        ],
+		initialPreviewAsData: true,
+        
+        deleteUrl: "/site/file-delete",
+        overwriteInitial: true,
+		showUpload: false,
+        allowedFileExtensions : ['jpg', 'png','gif'],
+        maxFileSize: 2000,
+        maxFilesNum: 1,
+		allowedPreviewTypes: ['image'],
+        allowedFileTypes: ['image'],
+		browseLabel: "选择图片",
+        browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
+        removeClass: "btn btn-danger",
+        removeLabel: "删除",
+        removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> ",
+		
+        slugCallback: function(filename) {
+            return filename.replace('(', '_').replace(']', '_');
+        }
+		});
+    
 	</script>
 	</body>
 </html>
