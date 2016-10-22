@@ -1,24 +1,10 @@
+<!DOCTYPE HTML>
 <html>
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Sport</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Free HTML5 Website Template by freehtml5.co" />
-	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-	<meta name="author" content="freehtml5.co" />
-
-
-  	<!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
 
 	<link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	
@@ -26,7 +12,7 @@
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/tabs.css">
 	<link type="text/css" rel="stylesheet" href="css/fileinput.min.css" />
-
+	<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" media="screen">
 
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
@@ -37,24 +23,25 @@
 	<body>
 	<div id="page-header">
 		<!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;">
+        	<div class="header-show">
+        	<div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#top_menu">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">LOGO</a>
+                <a class="navbar-brand" href="index.html"><span>SPORT LIFE</span></a>
             </div>
             <!-- /.navbar-header -->
 
             <div class="collapse navbar-collapse navbar-responsive-collapse" id="top_menu">
 						<ul class="nav navbar-nav navbar-right">
-							<li class="active"><a href="index.html">首页</a></li>
-							<li><a href="mySport.html">我的运动</a></li>
-							<li><a href="friend.html">好友</a></li>
-							<li><a href="activity.html">活动</a></li>
+							<li><a href="index.html"><p class="top-tab">首页</p></a></li>
+							<li><a href="mySport.html"><p class="top-tab">我的运动</p></a></li>
+							<li><a href="friend.html"><p class="top-tab">好友</p></a></li>
+							<li><a href="activity.html"><p class="top-tab">活动</p></a></li>
 							
 
 							<li class="dropdown">
@@ -62,8 +49,8 @@
                         		<span class="glyphicon glyphicon-user"></span><span class="caret"></span>
                     			</a>
                     			<ul class="dropdown-menu">
-                        			<li><a href="#"><span class="glyphicon glyphicon-user"></span>账户设置</a></li>
-                        			<li><a href="#"><span class="glyphicon glyphicon-cog"></span>密码修改</a></li>
+                        			<li><a href="infoEdit.html"><span class="glyphicon glyphicon-user"></span>账户设置</a></li>
+                        			<li><a href="pwEdit.html"><span class="glyphicon glyphicon-cog"></span>密码修改</a></li>
                         			<li class="divider"></li>
                         			<li><a href="login.html"><span class="	glyphicon glyphicon-log-out"></span> Logout</a></li>
                     			</ul>
@@ -71,8 +58,10 @@
                 			</li>
                 			<!-- /.dropdown -->
 						</ul>
-					</div>
+			</div>
             <!-- /.navbar-static-side -->
+        	</div>
+            
         </nav>
 
 	</div>
@@ -86,39 +75,52 @@
 	        <div class="swiper-slide">
 	           <div class="content-slide">
 	              	<div class="infoEdit">
-	              		<div class="row">
-	              			<div class="col-md-2 tc">用户名</div>
-	              			<div class="col-md-4">
-	              				<input name="userNmae" type="text">
-	              			</div>
-	              		</div>
-	              		<div class="row">
-	              			<div class="col-md-2 tc">签名</div>
-	              			<div class="col-md-8">
-	              				<input name="birthday" type="text">
-	              			</div>
-	              		</div>
-	              		<div class="row">
-	              			<div class="col-md-2 tc">性别</div>
-	              			<div class="col-md-2">
-	              				<input name="birthday" type="text">
-	              			</div>
-	              		</div>
-	              		<div class="row">
-	              			<div class="col-md-2 tc">生日</div>
-	              			<div class="col-md-4">
-	              				<input name="birthday" type="text">
-	              			</div>
-	              		</div>
-	              		<div class="row">
-	              			<div class="col-md-2 tc">所在地</div>
-	              			<div class="col-md-2">
-	              				<input name="address" type="text">
-	              			</div>
-	              		</div>
-	              		<div class="row">
-	              			<button class="infosave col-md-2 col-md-offset-2 btn">保存</button>
-	              		</div>
+	              		<form class="form-horizontal" role="form">
+						   <div class="form-group">
+						      <label for="userName" class="col-sm-2 control-label">用户名</label>
+						      <div class="col-sm-8">
+						         <input type="text" class="form-control" id="userName" placeholder="eg:咸鱼">
+						      </div>
+						   </div>
+						   <div class="form-group">
+						      <label for="userIntro" class="col-sm-2 control-label">个性签名</label>
+						      <div class="col-sm-8">
+						        <input type="text" class="form-control" id="userIntro">
+						      </div>
+						   </div>
+						   <div class="form-group">
+						   		<label for="sex" class="col-sm-2 control-label">性别</label>
+								<label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="malebox"
+							         value="male" checked>男
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="optionsRadiosinline" id="femalebox"
+							         value="female">女
+							   </label>
+							</div>   
+						   <div class="form-group">
+						      		<label for="birthday" class="col-sm-2 control-label">生日</label>
+                					<div class="input-group date form_date col-sm-6" data-date="" data-date-format="yyyy年mm月dd日" data-link-field="birthday" data-link-format="yyyy-mm-dd" style="padding-left:15px;">
+					                    <input class="form-control" size="16" type="text" value="" readonly>
+										<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+					                </div>
+					                <input type="hidden" id="birthday" value="" /><br/>
+						   </div>
+						   <div class="form-group">
+						      <label for="userAddr" class="col-sm-2 control-label">所在地</label>
+						      <div class="col-sm-4">
+						         <input type="text" class="form-control" id="userAddr" placeholder="">
+						      </div>
+						   </div>
+						   <hr>
+							<div class="form-group">
+						    	<div class="col-sm-offset-2 col-sm-10">
+						         	<button type="submit" class="btn btn-default">保存</button>
+						      	</div>
+						   </div>
+						</form>
+	              		
 	              	</div>
 	          </div>
 	        </div>
@@ -136,7 +138,7 @@
 	      </div>	
 
 		</div>
-	
+	</div>
 
 	<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
     <script src="https://code.jquery.com/jquery.js"></script>
@@ -145,7 +147,7 @@
     <script type="text/javascript" src="js/fileinput.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/idangerous.swiper.min.js"></script>
-    
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
     <script>
 		var tabsSwiper = new Swiper('.swiper-container',{
 			speed:500,
@@ -192,6 +194,15 @@
             return filename.replace('(', '_').replace(']', '_');
         }
 		});
+		$('.form_date').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    	});
     
 	</script>
 	</body>

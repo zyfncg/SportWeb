@@ -5,22 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Sport</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Free HTML5 Website Template by freehtml5.co" />
-	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-	<meta name="author" content="freehtml5.co" />
-
-
-  	<!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
-
+	
 	<link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	
 	<!-- Theme style  -->
@@ -36,24 +21,25 @@
 	<body>
 	<div id="page-header">
 		<!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;">
+        	<div class="header-show">
+        	<div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#top_menu">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">LOGO</a>
+                <a class="navbar-brand" href="index.html"><span>SPORT LIFE</span></a>
             </div>
             <!-- /.navbar-header -->
 
             <div class="collapse navbar-collapse navbar-responsive-collapse" id="top_menu">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="index.html">首页</a></li>
-							<li><a href="mySport.html">我的运动</a></li>
-							<li><a href="friend.html">好友</a></li>
-							<li class="active"><a href="activity.html">活动</a></li>
+							<li><a href="index.html"><p class="top-tab">首页</p></a></li>
+							<li><a href="mySport.html"><p class="top-tab">我的运动</p></a></li>
+							<li><a href="friend.html"><p class="top-tab">好友</p></a></li>
+							<li class="active"><a href="activity.html"><p class="top-tab">活动</p></a></li>
 							
 
 							<li class="dropdown">
@@ -61,8 +47,8 @@
                         		<span class="glyphicon glyphicon-user"></span><span class="caret"></span>
                     			</a>
                     			<ul class="dropdown-menu">
-                        			<li><a href="#"><span class="glyphicon glyphicon-user"></span> User Profile</a></li>
-                        			<li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+                        			<li><a href="infoEdit.html"><span class="glyphicon glyphicon-user"></span>账户设置</a></li>
+                        			<li><a href="pwEdit.html"><span class="glyphicon glyphicon-cog"></span>密码修改</a></li>
                         			<li class="divider"></li>
                         			<li><a href="login.html"><span class="	glyphicon glyphicon-log-out"></span> Logout</a></li>
                     			</ul>
@@ -70,8 +56,10 @@
                 			</li>
                 			<!-- /.dropdown -->
 						</ul>
-					</div>
+			</div>
             <!-- /.navbar-static-side -->
+        	</div>
+            
         </nav>
 
 	</div>
@@ -93,103 +81,98 @@
 				</div>
 			</div>
 			<div class="row">
-				<button class="col-center-block">参加活动</button>
+				<button class="col-center-block btn">参加活动</button>
 			</div>
-			<div class="merber">
+			<div class="member">
+				<h3>创建者</h3>
 				<div class="creator">
-					<h3>创建者</h3>
-					<div class="creatorInfo row">
-						<a href="friendDetail.html">
-							<div class="friend-img col-md-2 col-xs-3 col-sm-3">
-								<img class="img-circle img-responsive" src="images/user2.jpg">
-							</div>
-							<div class="friend-name col-md-2 col-xs-3 col-sm-3">
-								<p>doge1</p>
-							</div>
-						</a>	
-							<div class="friend-grade col-md-1 col-xs-3 col-sm-3">
-								<p>3</p>
-							</div>
-							<div class="pull-right">
-                    			<button><i>关注</i></button>
-                			</div>
-						
-							
-					</div>
+					
+						<div class="friend row">
+							<a href="friendDetail.html">
+								<div class="friend-img col-md-2 col-xs-3 col-sm-3">
+									<img class="img-circle img-responsive" src="images/user2.jpg">
+								</div>
+								<div class="friend-name col-md-2 col-xs-3 col-sm-3">
+									<p>doge2</p>
+								</div>
+							</a>
+								<div class="friend-grade col-md-2 col-xs-3 col-sm-3">
+									<p>3级</p>
+								</div>
+								<div class="option pull-right">
+	                    			<a href="#" data-toggle="tooltip" title="关注">
+	                        			<span class="glyphicon glyphicon-star-empty"></span>
+	                    			</a>
+	                			</div>			
+						</div>
 
 				</div>
+				<h3>参与者</h3>
 				<div class="follower">
-					<h3>参与者</h3>
+					
 					<div class="follow-panel">
 						<ul class="follow-list">
 							<li>
 								<div class="friend row">
-									<div class="friend-img col-md-2 col-xs-3 col-sm-3">
-										<img class="img-circle img-responsive" src="images/user2.jpg">
-									</div>
-									<div class="friend-name col-md-2 col-xs-3 col-sm-3">
-										<p>doge2</p>
-									</div>
-									
-									<div class="friend-grade col-md-1 col-xs-3 col-sm-3">
-										<p>3</p>
-									</div>
-									<div class="pull-right">
-		                    			<button><i>关注</i></button>
-		                			</div>
+									<a href="friendDetail.html">
+										<div class="friend-img col-md-2 col-xs-3 col-sm-3">
+											<img class="img-circle img-responsive" src="images/user2.jpg">
+										</div>
+										<div class="friend-name col-md-2 col-xs-3 col-sm-3">
+											<p>doge3</p>
+										</div>
+									</a>
+										<div class="friend-grade col-md-2 col-xs-3 col-sm-3">
+											<p>3级</p>
+										</div>
+										<div class="option pull-right">
+			                    			<a href="#" data-toggle="tooltip" title="关注">
+			                        			<span class="glyphicon glyphicon-star-empty"></span>
+			                    			</a>
+			                			</div>			
 								</div>
 							</li>
 							<li>
 								<div class="friend row">
-									<div class="friend-img col-md-2 col-xs-3 col-sm-3">
-										<img class="img-circle img-responsive" src="images/user2.jpg">
-									</div>
-									<div class="friend-name col-md-2 col-xs-3 col-sm-3">
-										<p>doge2</p>
-									</div>
-									
-									<div class="friend-grade col-md-1 col-xs-3 col-sm-3">
-										<p>3</p>
-									</div>
-									<div class="pull-right">
-		                    			<button><i>关注</i></button>
-		                			</div>
+									<a href="friendDetail.html">
+										<div class="friend-img col-md-2 col-xs-3 col-sm-3">
+											<img class="img-circle img-responsive" src="images/user2.jpg">
+										</div>
+										<div class="friend-name col-md-2 col-xs-3 col-sm-3">
+											<p>doge4</p>
+										</div>
+									</a>
+										<div class="friend-grade col-md-2 col-xs-3 col-sm-3">
+											<p>1级</p>
+										</div>
+										<div class="option pull-right">
+			                    			<a href="#" data-toggle="tooltip" title="关注">
+			                        			<span class="glyphicon glyphicon-star-empty"></span>
+			                    			</a>
+			                			</div>			
 								</div>
 							</li>
 							<li>
 								<div class="friend row">
-									<div class="friend-img col-md-2 col-xs-3 col-sm-3">
-										<img class="img-circle img-responsive" src="images/user2.jpg">
-									</div>
-									<div class="friend-name col-md-2 col-xs-3 col-sm-3">
-										<p>doge3</p>
-									</div>
-									
-									<div class="friend-grade col-md-1 col-xs-3 col-sm-3">
-										<p>3</p>
-									</div>
-									<div class="pull-right">
-		                    			<button><i>关注</i></button>
-		                			</div>
+									<a href="friendDetail.html">
+										<div class="friend-img col-md-2 col-xs-3 col-sm-3">
+											<img class="img-circle img-responsive" src="images/user2.jpg">
+										</div>
+										<div class="friend-name col-md-2 col-xs-3 col-sm-3">
+											<p>doge7</p>
+										</div>
+									</a>
+										<div class="friend-grade col-md-2 col-xs-3 col-sm-3">
+											<p>9级</p>
+										</div>
+										<div class="option pull-right">
+			                    			<a href="#" data-toggle="tooltip" title="已关注">
+			                        			<span class="glyphicon glyphicon-star"></span>
+			                    			</a>
+			                			</div>			
 								</div>
 							</li>
-							<li>
-								<div class="friend row">
-									<div class="friend-img col-md-2 col-xs-3 col-sm-3">
-										<img class="img-circle img-responsive" src="images/user2.jpg">
-									</div>
-									<div class="friend-name col-md-2 col-xs-3 col-sm-3">
-										<p>doge4</p>
-									</div>
-									
-									<div class="friend-grade col-md-1 col-xs-3 col-sm-3">
-										<p>3</p>
-									</div>
-									<div class="pull-right">
-		                    			<button><i>关注</i></button>
-		                			</div>
-								</div>
-							</li>
+							
 						</ul>
 					</div>
 						
