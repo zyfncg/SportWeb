@@ -11,7 +11,7 @@ class DB {
     private $db;
 
     private function __construct(){
-        $path = "../../database/sportlife.db";
+        $path = "../../../database/sportlife.db";
         $this->db = new SQLite3($path);
         if(!$this->db){
             echo $this->db->lastErrorMsg();
