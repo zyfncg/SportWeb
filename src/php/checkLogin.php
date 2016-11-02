@@ -7,17 +7,20 @@
  */
 //登录
 $username = htmlspecialchars($_POST['username']);
-$password = md5($_POST['password']);
+//$password = md5($_POST['password']);
+$password = $_POST['password'];
 echo $username;
 echo "<br>";
 echo $password;
 //包含数据库连接文件
-//include('conn.php');
-//检测用户名及密码是否正确
-//$check_query = mysql_query("select userid from user_list where username='$username' and password='$password' limit 1");
-//if($result = mysql_fetch_array($check_query)){
-if($username == "111"){
-    //登录成功
+include 'database.php';
+
+$db = DB::getInstance();
+$sql = "select * from user where name = '$username' and password = '$password'";
+
+$check_query = $db->find($sql);
+if($result = $check_query->fetchArray(SQLITE3_ASSOC)){
+    echo "ok<br>";
     session_start();
     $_SESSION['username'] = $username;
 //    $_SESSION['userid'] = $result['userid'];
@@ -25,10 +28,9 @@ if($username == "111"){
     echo '点击此处 <a href="login.php?action=logout">注销</a> 登录！<br />';
     header('Location: ../index.html');
     exit;
-} else {
+}else {
     exit('登录失败！点击此处 <a href="javascript:history.back(-1);">返回</a> 重试');
 }
-
 
 
 //注销登录
