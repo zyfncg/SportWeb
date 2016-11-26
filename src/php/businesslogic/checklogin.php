@@ -6,6 +6,7 @@
  * Time: 20:41
  */
 //登录
+session_start();
 $username = htmlspecialchars($_POST['username']);
 //$password = md5($_POST['password']);
 $password = $_POST['password'];
@@ -21,7 +22,6 @@ $sql = "select * from user where name = '$username' and password = '$password'";
 $check_query = $db->find($sql);
 if($result = $check_query->fetchArray(SQLITE3_ASSOC)){
     echo "ok<br>";
-    session_start();
     $_SESSION['username'] = $username;
 //    $_SESSION['userid'] = $result['userid'];
     echo $username,' 欢迎你！进入 <a href="my.php">用户中心</a><br />';
@@ -29,7 +29,8 @@ if($result = $check_query->fetchArray(SQLITE3_ASSOC)){
 //    header('Location: ../index.html');
     exit;
 }else {
-    exit('登录失败！点击此处 <a href="javascript:history.back(-1);">返回</a> 重试');
+    $doc = array("error" => "Username or Password error");
+    echo json_encode($doc);
 }
 
 

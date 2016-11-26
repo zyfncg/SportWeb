@@ -19,17 +19,24 @@ DROP TABLE IF EXISTS sport;
 CREATE TABLE sport(
 	userid char(64) PRIMARY KEY,
 	daydate char(10) PRIMARY KEY,
-	distance double DEFAULT 0,
+	distance real DEFAULT 0,
 	sportTime int DEFAULT 0,
 );
 
-INSERT INTO sport();
+INSERT INTO sport VALUES('test@qq.com','2016-11-26',5.5,120);
+INSERT INTO sport VALUES('test@163.com','2016-11-27',5.5,120);
+INSERT INTO sport VALUES('test@163.com','2016-11-26',5.5,120);
+INSERT INTO sport VALUES('test@gmail.com','2016-11-26',5.5,120);
+
+
 DROP TABLE IF EXISTS contant;
 CREATE TABLE contant(
 	hostid char(64) PRIMARY KEY,
 	friendid char(64) PRIMARY KEY,
 
 );
+INSERT INTO contant VALUES('test@qq.com','test@163.com');
+INSERT INTO contant VALUES('test@163.com','test@qq.com');
 
 DROP TABLE IF EXISTS activty;
 CREATE TABLE activty(
@@ -40,12 +47,15 @@ CREATE TABLE activty(
 	endTime char(18) NOT NULL,
 	peopleNum int DEFAULT 1,
 );
+INSERT INTO activity VALUES('test@qq.com2016-11-26','test@qq.com','马拉松','2016-12-01 13:00','2016-12-01 15:00',2);
 
 DROP TABLE IF EXISTS member;
 CREATE TABLE member(
 	activityid char(72) PRIMARY KEY,
 	memberid char(64) PRIMARY KEY,
 );
+INSERT INTO member VALUES('test@qq.com2016-11-26','test@163.com');
+
 
 CREATE VIEW contactView AS 
 SELECT userid,friendid,name,grade FROM users,contact
