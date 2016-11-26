@@ -23,7 +23,7 @@ CREATE TABLE sport(
 	sportTime int DEFAULT 0,
 );
 
-
+INSERT INTO sport();
 DROP TABLE IF EXISTS contant;
 CREATE TABLE contant(
 	hostid char(64) PRIMARY KEY,
