@@ -26,7 +26,7 @@
 				<img clas="img-responsive" src="../images/logo.png">
 			</div>
 			
-			<form id="login-form" class="form-signin" action="../php/businesslogic/checklogin.php"  method="POST">
+			<form id="login-form" class="form-signin"  method="POST">
 		      <h2 class="form-signin-heading">Please login</h2>
 		      <input type="text" class="form-control" name="username" placeholder="Username" required autofocus>
 		      <div class="row" style="height: 20px"></div>
@@ -46,7 +46,7 @@
     <!-- 包括所有已编译的插件 -->
     <script src="../js/bootstrap.min.js"></script>
     <script>
-		$("#button_sign").click(function () {
+		$("#button-sign").click(function () {
 			$.ajax({
 				cache: false,
 				url: "../php/businesslogic/checklogin.php",
