@@ -26,7 +26,7 @@
 				<img clas="img-responsive" src="../images/logo.png">
 			</div>
 			
-			<form id="login-form" class="form-signin"  method="POST">
+			<form id="login-form" class="form-signin" action="../php/businesslogic/checklogin.php" method="POST">
 		      <h2 class="form-signin-heading">Please login</h2>
 		      <input type="text" class="form-control" name="username" placeholder="Username" required autofocus>
 		      <div class="row" style="height: 20px"></div>
@@ -45,44 +45,43 @@
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- 包括所有已编译的插件 -->
     <script src="../js/bootstrap.min.js"></script>
-    <script>
-		$("#button-sign").click(function () {
-			$.ajax({
-				cache: false,
-				url: "../php/businesslogic/checklogin.php",
-				type: "POST",
-				async: false,
-				data: $("#login-form").serialize() + "&sign=on",//sign=on是登录,sign=off是注销
-				dataType: "json",
-				success: function (data) {
-					//处理返回结果
-					switch (data.error) {
-						case "false":
-							if (window.sessionStorage && window.localStorage) {
-								if(data.type == "time_on"){
-									window.localStorage["user_access"] = data.user_access;
-								}else{
-									window.sessionStorage["user_access"] = data.user_access;
-								}
-								alert("登录成功!" + "返回的随机字符串是:" + data.user_access);
-							} else {
-								alert("浏览器不支持localStorage或sessionStorage,换chrome吧");
-							}
-							break;
-						case "Username or Password error":
-							alert("用户名或密码错误");
-							break;
-						default:
-							alert("登录出错,请联系管理员");
-					}
-				},
-				error: function (data) {
-					alert("数据获取失败，请检查网络连接。");
-					console.info(data);
-				}
-			});
-		});
-	</script>
+    <!--<script>-->
+		<!--$("#button-sign").click(function () {-->
+			<!--$.ajax({-->
+				<!--url: "../php/businesslogic/checklogin.php",-->
+				<!--type: "POST",-->
+				<!--data: $("#login-form").serialize() + "&sign=on",//sign=on是登录,sign=off是注销-->
+				<!--dataType: "json",-->
+				<!--success: function (data) {-->
+					<!--//处理返回结果-->
+					<!--switch (data.error) {-->
+						<!--case "false":-->
+							<!--if (window.sessionStorage && window.localStorage) {-->
+								<!--if(data.type == "time_on"){-->
+									<!--window.localStorage["user_access"] = data.user_access;-->
+								<!--}else{-->
+									<!--window.sessionStorage["user_access"] = data.user_access;-->
+								<!--}-->
+								<!--alert("登录成功!" + "返回的随机字符串是:" + data.user_access);-->
+							<!--} else {-->
+								<!--alert("浏览器不支持localStorage或sessionStorage,换chrome吧");-->
+							<!--}-->
+							<!--break;-->
+						<!--case "Username or Password error":-->
+							<!--alert("用户名或密码错误");-->
+							<!--break;-->
+						<!--default:-->
+							<!--alert("登录出错,请联系管理员");-->
+					<!--}-->
+				<!--},-->
+				<!--error: function (data) {-->
+<!--//					alert("数据获取失败，请检查网络连接。");-->
+					<!--console.info(data);-->
+					<!--alert(data);-->
+				<!--}-->
+			<!--});-->
+		<!--});-->
+	<!--</script>-->
 	</body>
 </html>
 
