@@ -1,8 +1,8 @@
 <?php
 	session_start();
-	if(!isset($_SESSION['username'])){
-		echo $_SESSION['username'];
-		header('Location: ../../html/login1.html');
+	if($_SESSION['username']==""){
+		echo 'wooooooooo';
+		header('Location:login.html');
 	}
 ?>
 <!DOCTYPE HTML>
@@ -27,13 +27,7 @@
 
 	</head>
 	<body>
-	<?php
-		session_start();
-		if(!isset($_SESSION['username'])){
-			echo $_SESSION['username'];
-			header('Location: ../../html/login1.html');
-		}
-	?>
+
 	<div id="page-header">
 		<!-- Navigation -->
        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;">

@@ -16,7 +16,7 @@ $password = $_POST['password'];
 //包含数据库连接文件
 include '../database/database.php';
 $db = DB::getInstance();
-$sql = "select * from user where name = '$username' and password = '$password'";
+$sql = "select * from users where name = '$username' and password = '$password'";
 
 $check_query = $db->find($sql);
 if($result = $check_query->fetchArray(SQLITE3_ASSOC)){
@@ -25,7 +25,7 @@ if($result = $check_query->fetchArray(SQLITE3_ASSOC)){
 //    $_SESSION['userid'] = $result['userid'];
     echo $username,' 欢迎你！进入 <a href="my.php">用户中心</a><br />';
     echo '点击此处 <a href="login.php?action=logout">注销</a> 登录！<br />';
-    header('Location: ../../html/mySport.html');
+    header('Location: ../../html/mySport.php');
     exit;
 }else {
     $doc = array("error" => "Username or Password error");
