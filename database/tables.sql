@@ -1,8 +1,9 @@
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
 	userid char(64) PRIMARY KEY,
-	name char(255) NOT NULL,
+	username char(255) NOT NULL,
 	password char(20) NOT NULL,
+	picURL char(255),
 	grade int,
 	birthday char(10),
 	gender char(4),

@@ -16,7 +16,7 @@ $password = $_POST['password'];
 //包含数据库连接文件
 include '../database/database.php';
 $db = DB::getInstance();
-$sql = "select * from users where name = '$username' and password = '$password'";
+$sql = "select * from users where uername = '$username' and password = '$password'";
 
 $check_query = $db->find($sql);
 if($result = $check_query->fetchArray(SQLITE3_ASSOC)){

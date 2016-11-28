@@ -7,7 +7,7 @@
  */
 
 include '../../database/database.php';
-
+require 'sportData.php';
 class StatisticHandle{
     private $db;
 
@@ -61,11 +61,13 @@ class StatisticHandle{
             $day = $row['daydate'];
             $distance = $row['distance'];
             $time = $row['sportTime'];
+            echo $day."  ".$distance."  ".$time."<br>";
+            $data = new SportData($userid, $distance, $day, $time);
+            $alldata[] = $data;
         }
-        $data = new SportData($userid, $distance, $day, $time);
         return $alldata;
     }
-    public function saveSportData($sportData){
+    public function saveSportData($data){
 
     }
 }

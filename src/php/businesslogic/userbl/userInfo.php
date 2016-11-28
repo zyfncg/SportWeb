@@ -9,6 +9,7 @@ class UserInfo{
     private $uername;
     private $password;
     private $userid;
+    private $picURL;
     private $grade;
     private $gender;
     private $birthday;
@@ -26,11 +27,12 @@ class UserInfo{
      * @param $introduce
      * @param $address
      */
-    public function __construct($uername, $password, $userid, $grade, $gender, $birthday, $introduce, $address)
+    public function __construct($uername, $password, $userid, $picURL, $grade, $gender, $birthday, $introduce, $address)
     {
         $this->uername = $uername;
         $this->password = $password;
         $this->userid = $userid;
+        $this->picURL = $picURL;
         $this->grade = $grade;
         $this->gender = $gender;
         $this->birthday = $birthday;
@@ -60,6 +62,14 @@ class UserInfo{
     public function getUserid()
     {
         return $this->userid;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPicURL()
+    {
+        return $this->picURL;
     }
 
     /**
