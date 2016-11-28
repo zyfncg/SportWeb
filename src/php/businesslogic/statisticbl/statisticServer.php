@@ -12,17 +12,17 @@ $statHandle->getStatisticsAll("test@qq.com");
 //require '../../database/database.php';
 //$datatime = new DateTime();
 //echo $datatime->format('Y-m-d');
-//$d=strtotime('-3 days');
+$d=strtotime('-4 days');
 //echo date('Y-m-d',$d);
-//$day = date('Y-m-d',$d);
-//
-//$db = DB::getInstance();
-//$sql = "select * from sport where daydate = '$day'";
-//
-//$ret = $db->find($sql);
-//while($row = $ret->fetchArray(SQLITE3_ASSOC)){
-//    echo $row['userid'];
-//    echo $row['daydate'];
-//    echo $row['distance'];
-//    echo $row['sportTime'];
-//}
+$day = date('Y-m-d',$d);
+echo $day;
+$db = DB::getInstance();
+$sql = "select * from sport where daydate = '$day'";
+
+$ret = $db->find($sql);
+while($row = $ret->fetchArray(SQLITE3_ASSOC)){
+    echo $row['userid']."<br>";
+    echo $row['daydate']."<br>";
+    echo $row['distance']."<br>";
+    echo $row['sportTime']."<br>";
+}

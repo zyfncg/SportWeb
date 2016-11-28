@@ -11,8 +11,11 @@ class DB {
     private $db;
 
     private function __construct(){
-        $path = "../../../database/sportlife.db";
+        $path = $_SERVER['DOCUMENT_ROOT']."/database/sportlife.db";
+//        $path = "../../../database/sportlife.db";
         $this->db = new SQLite3($path);
+//        $this->db = new PDO('sqlite:'.$_SERVER['DOCUMENT_ROOT']."/database/sportlife.db");
+
         if(!$this->db){
             echo $this->db->lastErrorMsg();
         }else {
