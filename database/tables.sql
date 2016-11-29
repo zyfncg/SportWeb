@@ -3,8 +3,8 @@ CREATE TABLE users (
 	userid char(64) PRIMARY KEY,
 	username char(255) NOT NULL,
 	password char(20) NOT NULL,
-	picURL char(255),
-	grade int,
+	picURL char(255) DEFAULT "../img/defaultuser.png",
+	grade int DEFAULT 0,
 	birthday char(10),
 	gender char(4),
 	address char(100),
@@ -15,6 +15,11 @@ INSERT INTO users(userid,username,password) VALUES ('test@qq.com','doge','123456
 INSERT INTO users(userid,username,password) VALUES ('test@163.com','doge1','123456');
 INSERT INTO users(userid,username,password) VALUES ('test@gmail.com','doge2','123456');
 INSERT INTO users(userid,username,password) VALUES ('test@139.com','咸鱼','123456');
+INSERT INTO users(userid,username,password) VALUES ('test1@qq.com','咸鱼1','123456');
+INSERT INTO users(userid,username,password) VALUES ('test2@qq.com','咸鱼2','123456');
+INSERT INTO users(userid,username,password) VALUES ('test3@qq.com','咸鱼3','123456');
+INSERT INTO users(userid,username,password) VALUES ('test4@qq.com','咸鱼4','123456');
+INSERT INTO users(userid,username,password) VALUES ('test5@qq.com','咸鱼5','123456');
 
 DROP TABLE IF EXISTS sport;
 CREATE TABLE sport(
@@ -47,6 +52,10 @@ CREATE TABLE contact(
 	PRIMARY KEY(hostid,friendid)
 );
 INSERT INTO contact(hostid,friendid) VALUES('test@qq.com','test@163.com');
+INSERT INTO contact(hostid,friendid) VALUES('test@qq.com','test1@qq.com');
+INSERT INTO contact(hostid,friendid) VALUES('test@qq.com','test3@qq.com');
+INSERT INTO contact(hostid,friendid) VALUES('test@qq.com','test@gmail.com');
+
 INSERT INTO contact(hostid,friendid) VALUES('test@163.com','test@qq.com');
 
 DROP TABLE IF EXISTS activity;

@@ -129,7 +129,11 @@ $rows = getFriends($_SESSION['userid']);
 										<div class="friend row">
 											<a href="friendDetail.php">
 												<div class="friend-img col-md-2 col-xs-3 col-sm-3">
-													<img class="img-circle img-responsive" src="../images/user2.jpg">
+													<?php
+														$url = $row->getPicURL();
+//														echo $url;
+														echo "<img class='img-circle img-responsive' src='$url'>" ?>
+<!--													<img class="img-circle img-responsive" src="../images/user2.jpg">-->
 												</div>
 												<div class="friend-name col-md-2 col-xs-3 col-sm-3">
 													<p><?php echo $row->getName() ?></p>
@@ -151,150 +155,6 @@ $rows = getFriends($_SESSION['userid']);
 
 									</li>
 									<?php  endforeach; ?>
-									<li>
-										<div class="friend row">
-											<a href="friendDetail.php">
-												<div class="friend-img col-md-2 col-xs-3 col-sm-3">
-													<img class="img-circle img-responsive" src="../images/user2.jpg">
-												</div>
-												<div class="friend-name col-md-2 col-xs-3 col-sm-3">
-													<p>doge1</p>
-												</div>
-											</a>
-												<div class="friend-grade col-md-2 col-xs-3 col-sm-3">
-													<p>3级</p>
-												</div>
-												<div class="option pull-right">
-					                    			<a href="#" data-toggle="tooltip" title="取消关注">
-					                        			<span class="glyphicon glyphicon-trash"></span>
-
-					                    			</a>
-					                			</div>
-											
-											
-										</div>
-
-									</li>
-									<li>
-										<div class="friend row">
-											<a href="friendDetail.php">
-												<div class="friend-img col-md-2 col-xs-3 col-sm-3">
-													<img class="img-circle img-responsive" src="../images/user2.jpg">
-												</div>
-												<div class="friend-name col-md-2 col-xs-3 col-sm-3">
-													<p>doge2</p>
-												</div>
-											</a>
-												<div class="friend-grade col-md-2 col-xs-3 col-sm-3">
-													<p>3级</p>
-												</div>
-												<div class="option pull-right">
-					                    			<a href="#" data-toggle="tooltip" title="取消关注">
-					                        			<span class="glyphicon glyphicon-trash"></span>
-
-					                    			</a>
-					                			</div>
-											
-											
-										</div>
-
-									</li>
-									<li>
-										<div class="friend row">
-											<a href="friendDetail.php">
-												<div class="friend-img col-md-2 col-xs-3 col-sm-3">
-													<img class="img-circle img-responsive" src="../images/user2.jpg">
-												</div>
-												<div class="friend-name col-md-2 col-xs-3 col-sm-3">
-													<p>doge3</p>
-												</div>
-											</a>
-												<div class="friend-grade col-md-2 col-xs-3 col-sm-3">
-													<p>3级</p>
-												</div>
-												<div class="option pull-right">
-					                    			<a href="#" data-toggle="tooltip" title="取消关注">
-					                        			<span class="glyphicon glyphicon-trash"></span>
-
-					                    			</a>
-					                			</div>
-											
-											
-										</div>
-
-									</li>
-									<li>
-										<div class="friend row">
-											<a href="friendDetail.php">
-												<div class="friend-img col-md-2 col-xs-3 col-sm-3">
-													<img class="img-circle img-responsive" src="../images/user2.jpg">
-												</div>
-												<div class="friend-name col-md-2 col-xs-3 col-sm-3">
-													<p>doge4</p>
-												</div>
-											</a>
-												<div class="friend-grade col-md-2 col-xs-3 col-sm-3">
-													<p>3级</p>
-												</div>
-												<div class="option pull-right">
-					                    			<a href="#" data-toggle="tooltip" title="取消关注">
-					                        			<span class="glyphicon glyphicon-trash"></span>
-
-					                    			</a>
-					                			</div>
-											
-											
-										</div>
-
-									</li>
-									<li>
-										<div class="friend row">
-											<a href="friendDetail.php">
-												<div class="friend-img col-md-2 col-xs-3 col-sm-3">
-													<img class="img-circle img-responsive" src="../images/user2.jpg">
-												</div>
-												<div class="friend-name col-md-2 col-xs-3 col-sm-3">
-													<p>doge5</p>
-												</div>
-											</a>
-												<div class="friend-grade col-md-2 col-xs-3 col-sm-3">
-													<p>3级</p>
-												</div>
-												<div class="option pull-right">
-					                    			<a href="#" data-toggle="tooltip" title="取消关注">
-					                        			<span class="glyphicon glyphicon-trash"></span>
-
-					                    			</a>
-					                			</div>
-											
-											
-										</div>
-
-									</li>
-									<li>
-										<div class="friend row">
-											<a href="friendDetail.php">
-												<div class="friend-img col-md-2 col-xs-3 col-sm-3">
-													<img class="img-circle img-responsive" src="../images/user2.jpg">
-												</div>
-												<div class="friend-name col-md-2 col-xs-3 col-sm-3">
-													<p>doge6</p>
-												</div>
-											</a>
-												<div class="friend-grade col-md-2 col-xs-3 col-sm-3">
-													<p>3级</p>
-												</div>
-												<div class="option pull-right">
-					                    			<a href="#" data-toggle="tooltip" title="取消关注">
-					                        			<span class="glyphicon glyphicon-trash"></span>
-
-					                    			</a>
-					                			</div>
-											
-											
-										</div>
-
-									</li>
 									
 								</ul>
 							</div>

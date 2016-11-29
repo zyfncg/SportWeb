@@ -107,6 +107,7 @@
 								<p>今日运动时间 <span>
 										<?php
 //										$data = (object)getTodayData($_SESSION['userid']);
+
 										echo $data->getTime(); ?>
 									</span></p>
 							</div>
@@ -186,11 +187,13 @@
     <script src="../js/bootstrap.min.js"></script>
     <script type="text/javascript">
 				$(function(){
+
 					var distanceData = <?php
 						$weekData = getWeekData($_SESSION['userid']);
 						echo "[";
 						foreach ($weekData as $sport):
 							$date = $sport->getDay();
+							$date = date('m/d',strtotime($date));
 							$distance = $sport->getDistance();
 							echo "{name:'$date',value:$distance,color:'#76a871'},";
 						endforeach;
@@ -205,15 +208,25 @@
 //					        	{name : '星期六',value : 3.73,color:'#76a871'},
 //					        	{name : '星期日',value : 22.73,color:'#76a871'}
 //				        	];
-				    var timeData = [
-					        	{name : '星期一',value : 120,color:'#76a871'},
-					        	{name : '星期二',value : 20,color:'#76a871'},
-					        	{name : '星期三',value : 24,color:'#76a871'},
-					        	{name : '星期四',value : 177,color:'#76a871'},
-					        	{name : '星期五',value : 27,color:'#76a871'},
-					        	{name : '星期六',value : 73,color:'#76a871'},
-					        	{name : '星期日',value : 83,color:'#76a871'}
-				        	];
+					var timeData = <?php
+						echo "[";
+						foreach ($weekData as $sport):
+							$date = $sport->getDay();
+							$date = date('m/d',strtotime($date));
+							$time = $sport->getTime();
+							echo "{name:'$date',value:$time,color:'#76a871'},";
+						endforeach;
+						echo "]";
+						?>;
+//				    var timeData = [
+//					        	{name : '星期一',value : 120,color:'#76a871'},
+//					        	{name : '星期二',value : 20,color:'#76a871'},
+//					        	{name : '星期三',value : 24,color:'#76a871'},
+//					        	{name : '星期四',value : 177,color:'#76a871'},
+//					        	{name : '星期五',value : 27,color:'#76a871'},
+//					        	{name : '星期六',value : 73,color:'#76a871'},
+//					        	{name : '星期日',value : 83,color:'#76a871'}
+//				        	];
 		        	
 					var chart1 = new iChart.Column2D({
 						render : 'canvasDiv1',

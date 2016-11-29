@@ -5,10 +5,9 @@
  * Date: 2016/11/3
  * Time: 20:31
  */
-require  '../../database/database.php';
+//require $_SERVER['DOCUMENT_ROOT'].'/src/php/database/database.php';
 require  'SimpleInfo.php';
-require  '../statisticbl/statisticHandle.php';
-require '../statisticbl/SportData.php';
+require  dirname(__FILE__).'/../statisticbl/statisticHandle.php';
 class ContactHandle{
     private $db;
 
@@ -21,7 +20,7 @@ class ContactHandle{
 
     public function getContactList($userid){
         $friendList = array();
-        $sql = "select * from contant where hostid = '$userid'";
+        $sql = "select * from contact where hostid = '$userid'";
         $ret = $this->db->find($sql);
 
         while($row = $ret->fetchArray(SQLITE3_ASSOC)){
@@ -30,7 +29,7 @@ class ContactHandle{
             $result = $this->db->find($sql);
             if($rowfriend = $result->fetchArray(SQLITE3_ASSOC)){
                 $friendid1 = $rowfriend['userid'];
-                $username = $rowfriend['usename'];
+                $username = $rowfriend['username'];
                 $grade = $rowfriend['grade'];
                 $pciURL = $rowfriend['picURL'];
                 $friend = new SimpleInfo($friendid1,$username,$grade,$pciURL);
