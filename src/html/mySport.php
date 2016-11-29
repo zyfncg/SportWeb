@@ -94,7 +94,7 @@
 								<p>今日运动里程
 									<span><?php
 										$data = (object)getTodayData($_SESSION['userid']);
-										echo $data->getDistance(); ?>
+										echo $data->getDistance()." km"; ?>
 									</span>
 								</p>
 							</div>

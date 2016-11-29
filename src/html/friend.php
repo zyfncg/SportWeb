@@ -199,6 +199,7 @@ $rows = getFriends($_SESSION['userid']);
 							friendid:friendidText
 						},
 						function(data,status){
+							alert(data);
 							$("#$friendid").attr("title","关注");
 							$("#$friendid span").attr("class","glyphicon glyphicon-star-empty");
 						});
@@ -212,6 +213,7 @@ $rows = getFriends($_SESSION['userid']);
 							friendid:friendidText
 						},
 						function(data,status){
+							alert(data);
 							$("#$friendid").attr("title","取消关注");
 							$("#$friendid span").attr("class","glyphicon glyphicon-trash");
 						});
