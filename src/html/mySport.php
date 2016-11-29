@@ -108,7 +108,7 @@
 										<?php
 //										$data = (object)getTodayData($_SESSION['userid']);
 
-										echo $data->getTime(); ?>
+										echo $data->getTime()."min"; ?>
 									</span></p>
 							</div>
 						</div>
@@ -153,7 +153,11 @@
 								<img class="img-circle img-responsive" src="../images/run1.png">
 							</div>
 							<div class="runText tc">
-								<p>总运动里程 <span>10.2km</span></p>
+								<p>总运动里程 <span>
+										<?php
+										$data = (object)getALLData($_SESSION['userid']);
+										echo $data->getDistance(); ?>
+									</span></p>
 							</div>
 						</div>
 						<div class="run-time col-md-4">
@@ -161,7 +165,10 @@
 								<img class="img-circle img-responsive" src="../images/time.jpg">
 							</div>
 							<div class="timeText tc">
-								<p>总运动时间 <span>110小时32分</span></p>
+								<p>总运动时间 <span>
+										<?php
+										echo $data->getTime()."min"; ?>
+									</span></p>
 							</div>
 						</div>
 						<div class="run-rank col-md-4">

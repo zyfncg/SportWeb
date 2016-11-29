@@ -1,3 +1,17 @@
+<?php
+session_start();
+if(!isset($_SESSION['userid'])){
+	header('Location:login.html');
+}else{
+	echo $_SESSION['userid']."this is userid<br>";
+}
+
+require '../php/businesslogic/contactbl/contact.php';
+$rows = getDetail($_SESSION['userid'],$_GET['friendid']);
+$simple = $rows->getSimple();
+$todaysport = $rows->getTodaysport();
+$allsport = $rows->getAllsport();
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -74,13 +88,21 @@
 							</div>
 						</div>
 						<div class="tc">
-							<h1>沉迷web</h1>
+
+							<h1><?php $name = $simple->getName(); echo "$name"?></h1>
 						</div>
 						<div class="user-showinfo tc">
-							<p class="grade">等级: <span>1</span></p>
-							<p>累计运动里程：<span>3.6km</span></p>
-							<p>累计运动时间：<span>100小时</span></p>
-							<label class="col-center-block">已关注</label>
+							<p class="grade">等级: <span><?php $grade = $simple->getGrade();  echo "$grade"." 级" ?></span></p>
+							<p>累计运动里程：<span><?php $dist = $allsport->getDistance(); echo "$dist"." km" ?></span></p>
+							<p>累计运动时间：<span><?php $time = $allsport->getTime(); echo "$time"." min" ?></span></p>
+							<?php
+								if($simple->getIsCare()){
+									echo "<label class='col-center-block'>已关注</label>";
+								}else{
+									echo "<label class='col-center-block'>关注</label>";
+								}
+							?>
+
 						</div>
 					</div>
 			</div>
@@ -92,7 +114,7 @@
 								<img class="img-circle img-responsive" src="../images/run.jpg">
 							</div>
 							<div class="runText tc">
-								<p>今日运动里程 <span>1.2km</span></p>
+								<p>今日运动里程 <span><?php $dist = $todaysport->getDistance(); echo "$dist"." km" ?></span></p>
 							</div>
 						</div>
 						<div class="run-time col-md-6">
@@ -100,7 +122,7 @@
 								<img class="img-circle img-responsive" src="../images/time.jpg">
 							</div>
 							<div class="runText tc">
-								<p>今日运动时间 <span>1小时32分</span></p>
+								<p>今日运动时间 <span><?php $time = $todaysport->getTime(); echo "$time"." min" ?></span></p>
 							</div>
 						</div>
 					</div>
@@ -110,86 +132,43 @@
 					<h3>关注的人</h3>
 					<div class="follow-panel">
 						<ul class="follow-list">
+							<?php
+							$friends = getFriends($_GET['friendid']);
+							foreach ($friends as $row) :
+							?>
 							<li>
 								<div class="friend row">
-									<a href="friendDetail.php">
+									<?php $friendid = $row->getUserid();
+										echo "<a href='friendDetail.php?friendid=$friendid'>";
+									?>
 										<div class="friend-img col-md-2 col-xs-3 col-sm-3">
-											<img class="img-circle img-responsive" src="../images/user2.jpg">
+											<?php
+												$url = $row->getPicURL();
+												echo "<img class='img-circle img-responsive' src='$url'>"
+											?>
 										</div>
 										<div class="friend-name col-md-2 col-xs-3 col-sm-3">
-											<p>doge6</p>
+											<p><?php echo $row->getName() ?></p>
 										</div>
 									</a>
-										<div class="friend-grade col-md-2 col-xs-3 col-sm-3">
-											<p>3级</p>
-										</div>
-										<div class="option pull-right">
-			                    			<a href="#" data-toggle="tooltip" title="关注">
-			                        			<span class="glyphicon glyphicon-star-empty"></span>
-			                    			</a>
-			                			</div>			
+									<div class="friend-grade col-md-2 col-xs-3 col-sm-3">
+										<p><?php echo $row->getGrade() ?></p>
+									</div>
+									<div class="option pull-right">
+										<?php
+											if($row->getIsCare()){
+												echo "<a href='#' data-toggle='tooltip' title='点击取消关注'><span class='glyphicon glyphicon-star'></span></a>";
+											}else{
+												echo "<a href='#' data-toggle='tooltip' title='点击关注'><span class='glyphicon glyphicon-star-empty'></span></a>";
+											}
+										?>
+
+									</div>
+
 								</div>
 							</li>
-							<li>
-								<div class="friend row">
-									<a href="friendDetail.php">
-										<div class="friend-img col-md-2 col-xs-3 col-sm-3">
-											<img class="img-circle img-responsive" src="../images/user2.jpg">
-										</div>
-										<div class="friend-name col-md-2 col-xs-3 col-sm-3">
-											<p>doge7</p>
-										</div>
-									</a>
-										<div class="friend-grade col-md-2 col-xs-3 col-sm-3">
-											<p>3级</p>
-										</div>
-										<div class="option pull-right">
-			                    			<a href="#" data-toggle="tooltip" title="关注">
-			                        			<span class="glyphicon glyphicon-star-empty"></span>
-			                    			</a>
-			                			</div>			
-								</div>
-							</li>
-							<li>
-								<div class="friend row">
-									<a href="friendDetail.php">
-										<div class="friend-img col-md-2 col-xs-3 col-sm-3">
-											<img class="img-circle img-responsive" src="../images/user2.jpg">
-										</div>
-										<div class="friend-name col-md-2 col-xs-3 col-sm-3">
-											<p>doge8</p>
-										</div>
-									</a>
-										<div class="friend-grade col-md-2 col-xs-3 col-sm-3">
-											<p>3级</p>
-										</div>
-										<div class="option pull-right">
-			                    			<a href="#" data-toggle="tooltip" title="已关注">
-			                        			<span class="glyphicon glyphicon-star"></span>
-			                    			</a>
-			                			</div>			
-								</div>
-							</li>
-							<li>
-								<div class="friend row">
-									<a href="friendDetail.php">
-										<div class="friend-img col-md-2 col-xs-3 col-sm-3">
-											<img class="img-circle img-responsive" src="../images/user2.jpg">
-										</div>
-										<div class="friend-name col-md-2 col-xs-3 col-sm-3">
-											<p>doge9</p>
-										</div>
-									</a>
-										<div class="friend-grade col-md-2 col-xs-3 col-sm-3">
-											<p>3级</p>
-										</div>
-										<div class="option pull-right">
-			                    			<a href="#" data-toggle="tooltip" title="关注">
-			                        			<span class="glyphicon glyphicon-star-empty"></span>
-			                    			</a>
-			                			</div>			
-								</div>
-							</li>
+							<?php endforeach; ?>
+
 						</ul>
 					</div>
 						

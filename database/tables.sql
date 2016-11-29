@@ -11,15 +11,15 @@ CREATE TABLE users (
 	introducec char(256)
 );
 
-INSERT INTO users(userid,username,password) VALUES ('test@qq.com','doge','123456');
-INSERT INTO users(userid,username,password) VALUES ('test@163.com','doge1','123456');
-INSERT INTO users(userid,username,password) VALUES ('test@gmail.com','doge2','123456');
-INSERT INTO users(userid,username,password) VALUES ('test@139.com','咸鱼','123456');
-INSERT INTO users(userid,username,password) VALUES ('test1@qq.com','咸鱼1','123456');
-INSERT INTO users(userid,username,password) VALUES ('test2@qq.com','咸鱼2','123456');
-INSERT INTO users(userid,username,password) VALUES ('test3@qq.com','咸鱼3','123456');
-INSERT INTO users(userid,username,password) VALUES ('test4@qq.com','咸鱼4','123456');
-INSERT INTO users(userid,username,password) VALUES ('test5@qq.com','咸鱼5','123456');
+INSERT INTO users(userid,username,password) VALUES ('13812341234','doge','123456');
+INSERT INTO users(userid,username,password) VALUES ('13111111111','doge1','123456');
+INSERT INTO users(userid,username,password) VALUES ('13211111112','doge2','123456');
+INSERT INTO users(userid,username,password) VALUES ('13311111112','咸鱼','123456');
+INSERT INTO users(userid,username,password) VALUES ('13411111112','咸鱼1','123456');
+INSERT INTO users(userid,username,password) VALUES ('13511111112','咸鱼2','123456');
+INSERT INTO users(userid,username,password) VALUES ('13611111112','咸鱼3','123456');
+INSERT INTO users(userid,username,password) VALUES ('13711111112','咸鱼4','123456');
+INSERT INTO users(userid,username,password) VALUES ('13811111112','咸鱼5','123456');
 
 DROP TABLE IF EXISTS sport;
 CREATE TABLE sport(
@@ -30,19 +30,19 @@ CREATE TABLE sport(
 	PRIMARY KEY(userid,daydate)
 );
 
-INSERT INTO sport VALUES('test@qq.com','2016-11-18',1.5,20);
-INSERT INTO sport VALUES('test@qq.com','2016-11-19',2.5,100);
-INSERT INTO sport VALUES('test@qq.com','2016-11-20',4.5,120);
-INSERT INTO sport VALUES('test@qq.com','2016-11-21',2.5,130);
-INSERT INTO sport VALUES('test@qq.com','2016-11-22',5.5,50);
-INSERT INTO sport VALUES('test@qq.com','2016-11-23',4.5,36);
-INSERT INTO sport VALUES('test@qq.com','2016-11-24',2.2,22);
-INSERT INTO sport VALUES('test@qq.com','2016-11-25',3.4,45);
-INSERT INTO sport VALUES('test@qq.com','2016-11-26',3.5,50);
-INSERT INTO sport VALUES('test@qq.com','2016-11-28',2.5,48);
-INSERT INTO sport VALUES('test@163.com','2016-11-27',5.5,60);
-INSERT INTO sport VALUES('test@163.com','2016-11-26',5.5,79);
-INSERT INTO sport VALUES('test@gmail.com','2016-11-26',5.5,82);
+INSERT INTO sport VALUES('13812341234','2016-11-18',1.5,20);
+INSERT INTO sport VALUES('13812341234','2016-11-19',2.5,100);
+INSERT INTO sport VALUES('13812341234','2016-11-20',4.5,120);
+INSERT INTO sport VALUES('13812341234','2016-11-21',2.5,130);
+INSERT INTO sport VALUES('13812341234','2016-11-22',5.5,50);
+INSERT INTO sport VALUES('13812341234','2016-11-23',4.5,36);
+INSERT INTO sport VALUES('13812341234','2016-11-24',2.2,22);
+INSERT INTO sport VALUES('13812341234','2016-11-25',3.4,45);
+INSERT INTO sport VALUES('13812341234','2016-11-26',3.5,50);
+INSERT INTO sport VALUES('13812341234','2016-11-28',2.5,48);
+INSERT INTO sport VALUES('13111111111','2016-11-27',5.5,60);
+INSERT INTO sport VALUES('13211111112','2016-11-26',5.5,79);
+INSERT INTO sport VALUES('13311111112','2016-11-26',5.5,82);
 
 
 DROP TABLE IF EXISTS contact;
@@ -55,6 +55,11 @@ INSERT INTO contact(hostid,friendid) VALUES('test@qq.com','test@163.com');
 INSERT INTO contact(hostid,friendid) VALUES('test@qq.com','test1@qq.com');
 INSERT INTO contact(hostid,friendid) VALUES('test@qq.com','test3@qq.com');
 INSERT INTO contact(hostid,friendid) VALUES('test@qq.com','test@gmail.com');
+INSERT INTO contact(hostid,friendid) VALUES('test1@qq.com','test@qq.com');
+INSERT INTO contact(hostid,friendid) VALUES('test1@qq.com','test2@qq.com');
+INSERT INTO contact(hostid,friendid) VALUES('test1@qq.com','test3@qq.com');
+INSERT INTO contact(hostid,friendid) VALUES('test2@qq.com','test@qq.com');
+INSERT INTO contact(hostid,friendid) VALUES('test2@qq.com','test1@qq.com');
 
 INSERT INTO contact(hostid,friendid) VALUES('test@163.com','test@qq.com');
 

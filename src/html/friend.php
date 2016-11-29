@@ -127,7 +127,14 @@ $rows = getFriends($_SESSION['userid']);
 									<?php foreach ($rows as $row) :?>
 									<li>
 										<div class="friend row">
-											<a href="friendDetail.php">
+											
+											<?php $friendid = $row->getUserid();
+												$userid = $_SESSION['userid'];
+												echo "<p id='userid' $userid</p>>";
+												echo "<p id='friendid' $friendid</p>>";
+												echo "<a href='friendDetail.php?friendid=$friendid'>";
+											?>
+<!--											<a href="friendDetail.php">-->
 												<div class="friend-img col-md-2 col-xs-3 col-sm-3">
 													<?php
 														$url = $row->getPicURL();
@@ -144,7 +151,7 @@ $rows = getFriends($_SESSION['userid']);
 												</div>
 												<div class="option pull-right">
 
-					                    			<a href="#" data-toggle="tooltip" title="取消关注">
+					                    			<a href="#" id=<?php echo $friendid; ?> class = "manageFriend" data-toggle="tooltip" title="取消关注">
 					                        			<span class="glyphicon glyphicon-trash"></span>
 
 					                    			</a>
@@ -175,6 +182,47 @@ $rows = getFriends($_SESSION['userid']);
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- 包括所有已编译的插件 -->
     <script src="../js/bootstrap.min.js"></script>
+
+	<?php foreach ($rows as $row) :
+		$friendid = $row->getUserid();
+		$userid = $_SESSION['userid'];
+		echo <<<EOT
+		<script>
+		$("#$friendid").click(function(){
+				if($("#$friendid").attr("title")=="取消关注"){
+					var useridText = "$userid";
+					var friendidText = "$friendid";
+					$.post("../php/businesslogic/contactbl/contact.php",
+						{
+							method:"del",
+							userid:useridText,
+							friendid:friendidText
+						},
+						function(data,status){
+							$("#$friendid").attr("title","关注");
+							$("#$friendid span").attr("class","glyphicon glyphicon-star-empty");
+						});
+				}else{
+					var useridText = "$userid";
+					var friendidText = "$friendid";
+					$.post("../php/businesslogic/contactbl/contact.php",
+						{
+							method:"add",
+							userid:useridText,
+							friendid:friendidText
+						},
+						function(data,status){
+							$("#$friendid").attr("title","取消关注");
+							$("#$friendid span").attr("class","glyphicon glyphicon-trash");
+						});
+				}
+		});
+	</script>
+
+
+EOT;
+		endforeach;
+	?>
 
 	</body>
 </html>

@@ -6,7 +6,7 @@
  * Time: 20:31
  */
 //require $_SERVER['DOCUMENT_ROOT'].'/src/php/database/database.php';
-require  'SimpleInfo.php';
+require  'DetailInfo.php';
 require  dirname(__FILE__).'/../statisticbl/statisticHandle.php';
 class ContactHandle{
     private $db;
@@ -33,11 +33,11 @@ class ContactHandle{
                 $grade = $rowfriend['grade'];
                 $pciURL = $rowfriend['picURL'];
                 $friend = new SimpleInfo($friendid1,$username,$grade,$pciURL);
-//                $sql1 = "select * from contant where hostid = '$userid' and friendid = '$friendid1'";
-//                $check = $this->db->find($sql1);
-//                if($check_care = $check->fetchArray(SQLITE3_ASSOC)){
-//                    $friend->setIsCare(ture);
-//                }
+                $sql1 = "select * from contact where hostid = '$userid' and friendid = '$friendid1'";
+                $check = $this->db->find($sql1);
+                if($check_care = $check->fetchArray(SQLITE3_ASSOC)){
+                    $friend->setIsCare(TRUE);
+                }
                 $friendList[] = $friend;
             }
 
@@ -48,11 +48,15 @@ class ContactHandle{
         $sql = "select userid,username,grade,picURL from users where userid = '$friendid'";
         $ret = $this->db->find($sql);
         if($row = $ret->fetchArray(SQLITE3_ASSOC)){
-            $username = $row['usename'];
+            $username = $row['username'];
             $grade = $row['grade'];
             $pciURL = $row['picURL'];
             $info = new SimpleInfo($friendid,$username,$grade,$pciURL);
-
+            $sql1 = "select * from contact where hostid = '$userid' and friendid = '$friendid'";
+            $check = $this->db->find($sql1);
+            if($check_care = $check->fetchArray(SQLITE3_ASSOC)){
+                $info->setIsCare(TRUE);
+            }
         }
         $sportHandle = new StatisticHandle();
         $allsport = $sportHandle->getStatisticsAll($friendid);

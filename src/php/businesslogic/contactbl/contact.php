@@ -6,11 +6,14 @@
  * Time: 21:22
  */
 require 'contactHandle.php';
+$contHandle = new ContactHandle();
+
+
 function getFriends($userid){
     $contHandle = new ContactHandle();
     return $contHandle->getContactList($userid);
 }
-function getDetail($userid){
+function getDetail($userid,$friendid){
     $conHandle = new ContactHandle();
-    return $conHandle->getFriendInfo($userid);
+    return $conHandle->getFriendInfo($userid,$friendid);
 }

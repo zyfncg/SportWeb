@@ -12,7 +12,7 @@ class SimpleInfo
     private $name;
     private $grade;
     private $picURL;
-    private $isCare = true;
+    private $isCare = FALSE;
 
     /**
      * SimpleInfo constructor.

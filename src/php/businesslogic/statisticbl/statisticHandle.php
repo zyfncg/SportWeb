@@ -36,11 +36,10 @@ class StatisticHandle{
         return $weekdata;
     }
     private function getDataByDay($userid, $day){
-        $today = date('Y-m-d');
+
         $sql = "select * from sport where userid = '$userid' and daydate = '$day'";
         $ret = $this->db->find($sql);
         $distance = 0;
-        $day = $today;
         $time = 0;
         while($row = $ret->fetchArray(SQLITE3_ASSOC)){
             $day = $row['daydate'];
@@ -52,21 +51,22 @@ class StatisticHandle{
     }
     public function getStatisticsAll($userid){
         $today = date('Y-m-d');
-        $alldata = array();
-        $sql = "select * from sport where userid = '$userid'";
+        $sql = "select sum(distance),sum(sportTime) from sport where userid = '$userid'";
         $ret = $this->db->find($sql);
         $distance = 0;
-        $day = $today;
         $time = 0;
-        while($row = $ret->fetchArray(SQLITE3_ASSOC)){
-            $day = $row['daydate'];
-            $distance = $row['distance'];
-            $time = $row['sportTime'];
-            echo $day."  ".$distance."  ".$time."<br>";
-            $data = new SportData($userid, $distance, $day, $time);
-            $alldata[] = $data;
+        if($row = $ret->fetchArray(SQLITE3_ASSOC)){
+            $distance = $row['sum(distance)'];
+            $time = $row['sum(sportTime)'];
+            if($distance == null){
+                $distance = 0;
+            }
+            if($time == null){
+                $time = 0;
+            }
         }
-        return $alldata;
+        $data = new SportData($userid, $distance, $today, $time);
+        return $data;
     }
     public function saveSportData($data){
 
