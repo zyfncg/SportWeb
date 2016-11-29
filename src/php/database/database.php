@@ -19,7 +19,7 @@ class DB {
         if(!$this->db){
             echo $this->db->lastErrorMsg();
         }else {
-            echo "Opened database successfully\n";
+//            echo "Opened database successfully\n";
         }
     }
     private function __clone(){}

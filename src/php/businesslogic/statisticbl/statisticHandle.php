@@ -6,8 +6,9 @@
  * Time: 20:02
  */
 
-include '../../database/database.php';
-require 'sportData.php';
+//include $_SERVER['DOCUMENT_ROOT'].'../../database/database.php';
+include $_SERVER['DOCUMENT_ROOT'].'/src/php/database/database.php';
+require 'SportData.php';
 class StatisticHandle{
     private $db;
 

@@ -1,3 +1,17 @@
+<?php
+session_start();
+if(!isset($_SESSION['userid'])){
+	header('Location:login.html');
+}else{
+	echo $_SESSION['userid']."this is userid<br>";
+}
+//	if($_SESSION['userid']==""){
+//		echo 'wooooooooo';
+//
+//	}
+require '../php/businesslogic/contactbl/contact.php';
+$rows = getFriends($_SESSION['userid']);
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -38,7 +52,7 @@
 						<ul class="nav navbar-nav navbar-right">
 							<li><a href="index.html"><p class="top-tab">首页</p></a></li>
 							<li><a href="mySport.php"><p class="top-tab">我的运动</p></a></li>
-							<li class="active"><a href="friend.html"><p class="top-tab">好友</p></a></li>
+							<li class="active"><a href="friend.php"><p class="top-tab">好友</p></a></li>
 							<li><a href="activity.html"><p class="top-tab">活动</p></a></li>
 							
 
@@ -110,20 +124,22 @@
                     			</div>
                     			<hr>
 								<ul class="friend-list">
+									<?php foreach ($rows as $row) :?>
 									<li>
 										<div class="friend row">
-											<a href="friendDetail.html">
+											<a href="friendDetail.php">
 												<div class="friend-img col-md-2 col-xs-3 col-sm-3">
 													<img class="img-circle img-responsive" src="../images/user2.jpg">
 												</div>
 												<div class="friend-name col-md-2 col-xs-3 col-sm-3">
-													<p>doge0</p>
+													<p><?php echo $row->getName() ?></p>
 												</div>
 											</a>
 												<div class="friend-grade col-md-2 col-xs-3 col-sm-3">
-													<p>3级</p>
+													<p><?php echo $row->getGrade() ?></p>
 												</div>
 												<div class="option pull-right">
+
 					                    			<a href="#" data-toggle="tooltip" title="取消关注">
 					                        			<span class="glyphicon glyphicon-trash"></span>
 
@@ -134,9 +150,10 @@
 										</div>
 
 									</li>
+									<?php  endforeach; ?>
 									<li>
 										<div class="friend row">
-											<a href="friendDetail.html">
+											<a href="friendDetail.php">
 												<div class="friend-img col-md-2 col-xs-3 col-sm-3">
 													<img class="img-circle img-responsive" src="../images/user2.jpg">
 												</div>
@@ -160,7 +177,7 @@
 									</li>
 									<li>
 										<div class="friend row">
-											<a href="friendDetail.html">
+											<a href="friendDetail.php">
 												<div class="friend-img col-md-2 col-xs-3 col-sm-3">
 													<img class="img-circle img-responsive" src="../images/user2.jpg">
 												</div>
@@ -184,7 +201,7 @@
 									</li>
 									<li>
 										<div class="friend row">
-											<a href="friendDetail.html">
+											<a href="friendDetail.php">
 												<div class="friend-img col-md-2 col-xs-3 col-sm-3">
 													<img class="img-circle img-responsive" src="../images/user2.jpg">
 												</div>
@@ -208,7 +225,7 @@
 									</li>
 									<li>
 										<div class="friend row">
-											<a href="friendDetail.html">
+											<a href="friendDetail.php">
 												<div class="friend-img col-md-2 col-xs-3 col-sm-3">
 													<img class="img-circle img-responsive" src="../images/user2.jpg">
 												</div>
@@ -232,7 +249,7 @@
 									</li>
 									<li>
 										<div class="friend row">
-											<a href="friendDetail.html">
+											<a href="friendDetail.php">
 												<div class="friend-img col-md-2 col-xs-3 col-sm-3">
 													<img class="img-circle img-responsive" src="../images/user2.jpg">
 												</div>
@@ -256,7 +273,7 @@
 									</li>
 									<li>
 										<div class="friend row">
-											<a href="friendDetail.html">
+											<a href="friendDetail.php">
 												<div class="friend-img col-md-2 col-xs-3 col-sm-3">
 													<img class="img-circle img-responsive" src="../images/user2.jpg">
 												</div>

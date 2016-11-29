@@ -11,10 +11,10 @@ CREATE TABLE users (
 	introducec char(256)
 );
 
-INSERT INTO users(userid,name,password) VALUES ('test@qq.com','doge','123456');
-INSERT INTO users(userid,name,password) VALUES ('test@163.com','doge1','123456');
-INSERT INTO users(userid,name,password) VALUES ('test@gmail.com','doge2','123456');
-INSERT INTO users(userid,name,password) VALUES ('test@139.com','咸鱼','123456');
+INSERT INTO users(userid,username,password) VALUES ('test@qq.com','doge','123456');
+INSERT INTO users(userid,username,password) VALUES ('test@163.com','doge1','123456');
+INSERT INTO users(userid,username,password) VALUES ('test@gmail.com','doge2','123456');
+INSERT INTO users(userid,username,password) VALUES ('test@139.com','咸鱼','123456');
 
 DROP TABLE IF EXISTS sport;
 CREATE TABLE sport(
@@ -40,14 +40,14 @@ INSERT INTO sport VALUES('test@163.com','2016-11-26',5.5,79);
 INSERT INTO sport VALUES('test@gmail.com','2016-11-26',5.5,82);
 
 
-DROP TABLE IF EXISTS contant;
-CREATE TABLE contant(
+DROP TABLE IF EXISTS contact;
+CREATE TABLE contact(
 	hostid char(64),
 	friendid char(64),
 	PRIMARY KEY(hostid,friendid)
 );
-INSERT INTO contant(hostid,friendid) VALUES('test@qq.com','test@163.com');
-INSERT INTO contant(hostid,friendid) VALUES('test@163.com','test@qq.com');
+INSERT INTO contact(hostid,friendid) VALUES('test@qq.com','test@163.com');
+INSERT INTO contact(hostid,friendid) VALUES('test@163.com','test@qq.com');
 
 DROP TABLE IF EXISTS activity;
 CREATE TABLE activity(
@@ -70,7 +70,7 @@ INSERT INTO member VALUES('test@qq.com2016-11-26','test@163.com');
 
 DROP VIEW IF EXISTS contactView;
 CREATE VIEW contactView AS 
-SELECT userid,friendid,name,grade FROM users,contact
+SELECT userid,friendid,username,grade,picURL FROM users,contact
 WHERE userid=hostid;
 
 DROP VIEW  IF EXISTS memberView;

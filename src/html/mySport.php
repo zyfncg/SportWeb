@@ -1,9 +1,15 @@
 <?php
 	session_start();
-	if($_SESSION['username']==""){
-		echo 'wooooooooo';
+	if(!isset($_SESSION['userid'])){
 		header('Location:login.html');
+	}else{
+		echo $_SESSION['userid']."this is userid<br>";
 	}
+//	if($_SESSION['userid']==""){
+//		echo 'wooooooooo';
+//
+//	}
+	require '../php/businesslogic/statisticbl/statisticServer.php';
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -27,7 +33,6 @@
 
 	</head>
 	<body>
-
 	<div id="page-header">
 		<!-- Navigation -->
        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;">
@@ -47,7 +52,7 @@
 						<ul class="nav navbar-nav navbar-right">
 							<li><a href="index.html"><p class="top-tab">首页</p></a></li>
 							<li  class="active"><a href="mySport.html"><p class="top-tab">我的运动</p></a></li>
-							<li><a href="friend.html"><p class="top-tab">好友</p></a></li>
+							<li><a href="friend.php"><p class="top-tab">好友</p></a></li>
 							<li><a href="activity.html"><p class="top-tab">活动</p></a></li>
 							
 
@@ -86,7 +91,12 @@
 								<img class="img-circle img-responsive" src="../images/run.jpg">
 							</div>
 							<div class="runText tc">
-								<p>今日运动里程 <span>1.2km</span></p>
+								<p>今日运动里程
+									<span><?php
+										$data = (object)getTodayData($_SESSION['userid']);
+										echo $data->getDistance(); ?>
+									</span>
+								</p>
 							</div>
 						</div>
 						<div class="run-time col-md-4">
@@ -94,7 +104,11 @@
 								<img class="img-circle img-responsive" src="../images/time.jpg">
 							</div>
 							<div class="runText tc">
-								<p>今日运动时间 <span>1小时32分</span></p>
+								<p>今日运动时间 <span>
+										<?php
+//										$data = (object)getTodayData($_SESSION['userid']);
+										echo $data->getTime(); ?>
+									</span></p>
 							</div>
 						</div>
 						<div class="run-rank col-md-4">
@@ -172,15 +186,25 @@
     <script src="../js/bootstrap.min.js"></script>
     <script type="text/javascript">
 				$(function(){
-					var distanceData = [
-					        	{name : '星期一',value : 12.75,color:'#76a871'},
-					        	{name : '星期二',value : 29.84,color:'#76a871'},
-					        	{name : '星期三',value : 24.88,color:'#76a871'},
-					        	{name : '星期四',value : 6.77,color:'#76a871'},
-					        	{name : '星期五',value : 2.02,color:'#76a871'},
-					        	{name : '星期六',value : 3.73,color:'#76a871'},
-					        	{name : '星期日',value : 22.73,color:'#76a871'}
-				        	];
+					var distanceData = <?php
+						$weekData = getWeekData($_SESSION['userid']);
+						echo "[";
+						foreach ($weekData as $sport):
+							$date = $sport->getDay();
+							$distance = $sport->getDistance();
+							echo "{name:'$date',value:$distance,color:'#76a871'},";
+						endforeach;
+						echo "]";
+					?>;
+//					var distanceData = [
+//					        	{name : '星期一',value : 12.75,color:'#76a871'},
+//					        	{name : '星期二',value : 29.84,color:'#76a871'},
+//					        	{name : '星期三',value : 24.88,color:'#76a871'},
+//					        	{name : '星期四',value : 6.77,color:'#76a871'},
+//					        	{name : '星期五',value : 2.02,color:'#76a871'},
+//					        	{name : '星期六',value : 3.73,color:'#76a871'},
+//					        	{name : '星期日',value : 22.73,color:'#76a871'}
+//				        	];
 				    var timeData = [
 					        	{name : '星期一',value : 120,color:'#76a871'},
 					        	{name : '星期二',value : 20,color:'#76a871'},

@@ -8,7 +8,7 @@
 require  '../../database/database.php';
 require  'SimpleInfo.php';
 require  '../statisticbl/statisticHandle.php';
-require  '../statisticbl/sportData.php';
+require '../statisticbl/SportData.php';
 class ContactHandle{
     private $db;
 

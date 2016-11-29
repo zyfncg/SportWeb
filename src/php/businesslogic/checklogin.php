@@ -16,12 +16,12 @@ $password = $_POST['password'];
 //包含数据库连接文件
 include '../database/database.php';
 $db = DB::getInstance();
-$sql = "select * from users where uername = '$username' and password = '$password'";
+$sql = "select * from users where userid = '$username' and password = '$password'";
 
 $check_query = $db->find($sql);
 if($result = $check_query->fetchArray(SQLITE3_ASSOC)){
     echo "ok<br>";
-    $_SESSION['username'] = $username;
+    $_SESSION['userid'] = $username;
 //    $_SESSION['userid'] = $result['userid'];
     echo $username,' 欢迎你！进入 <a href="my.php">用户中心</a><br />';
     echo '点击此处 <a href="login.php?action=logout">注销</a> 登录！<br />';

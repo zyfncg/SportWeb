@@ -38,7 +38,7 @@
 						<ul class="nav navbar-nav navbar-right">
 							<li><a href="index.html"><p class="top-tab">首页</p></a></li>
 							<li><a href="mySport.php"><p class="top-tab">我的运动</p></a></li>
-							<li class="active"><a href="friend.html"><p class="top-tab">好友</p></a></li>
+							<li class="active"><a href="friend.php"><p class="top-tab">好友</p></a></li>
 							<li><a href="activity.html"><p class="top-tab">活动</p></a></li>
 							
 
@@ -112,7 +112,7 @@
 						<ul class="follow-list">
 							<li>
 								<div class="friend row">
-									<a href="friendDetail.html">
+									<a href="friendDetail.php">
 										<div class="friend-img col-md-2 col-xs-3 col-sm-3">
 											<img class="img-circle img-responsive" src="../images/user2.jpg">
 										</div>
@@ -132,7 +132,7 @@
 							</li>
 							<li>
 								<div class="friend row">
-									<a href="friendDetail.html">
+									<a href="friendDetail.php">
 										<div class="friend-img col-md-2 col-xs-3 col-sm-3">
 											<img class="img-circle img-responsive" src="../images/user2.jpg">
 										</div>
@@ -152,7 +152,7 @@
 							</li>
 							<li>
 								<div class="friend row">
-									<a href="friendDetail.html">
+									<a href="friendDetail.php">
 										<div class="friend-img col-md-2 col-xs-3 col-sm-3">
 											<img class="img-circle img-responsive" src="../images/user2.jpg">
 										</div>
@@ -172,7 +172,7 @@
 							</li>
 							<li>
 								<div class="friend row">
-									<a href="friendDetail.html">
+									<a href="friendDetail.php">
 										<div class="friend-img col-md-2 col-xs-3 col-sm-3">
 											<img class="img-circle img-responsive" src="../images/user2.jpg">
 										</div>

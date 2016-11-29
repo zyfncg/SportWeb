@@ -6,8 +6,21 @@
  * Time: 21:21
  */
 require "statisticHandle.php";
-$statHandle = new StatisticHandle();
-$data = $statHandle->getStatisticsAll("test@qq.com");
+
+
+function getTodayData($userid){
+    $statHandle = new StatisticHandle();
+    return $statHandle->getStatisticsToday($userid);
+}
+function getWeekData($userid){
+    $statHandle = new StatisticHandle();
+    return $statHandle->getStatisticsWeek($userid);
+}
+function getAllData($userid){
+    $statHandle = new StatisticHandle();
+    return $statHandle->getStatisticsAll($userid);
+}
+
 //require '../../database/database.php';
 //$datatime = new DateTime();
 //echo $datatime->format('Y-m-d');
