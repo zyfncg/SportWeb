@@ -115,14 +115,14 @@ require '../php/businesslogic/activitybl/activity.php';
 							  			</a>		
 								  	</li>
 								    <li class="animate">
-								    	<a href="#activity-list" data-toggle="tab">
+								    	<a href="#create-activity-list" data-toggle="tab">
 							  				<div>
 							  					<span class="tc">创建的活动</span><i class="fa fa-code float-right"></i>
 							  				</div>
 							  			</a>
 								    </li>
 								    <li class="animate">
-								    	<a href="#activity-list" data-toggle="tab">
+								    	<a href="#join-activity-list" data-toggle="tab">
 							  				<div>
 							  					<span class="tc">参加的活动</span><i class="fa fa-arrows-alt float-right"></i>
 							  				</div>
@@ -248,7 +248,134 @@ require '../php/businesslogic/activitybl/activity.php';
 								</form>
 							</div>
 						</div>
-						
+						<div class="tab-pane fade" id="create-activity-list">
+							<div class="activity-list-panel">
+								<div class="activity-list-title">
+									<p>活动列表</p>
+								</div>
+								<ul class="activity-list">
+									<li>
+										<div class="row">
+											<div class="activity-name col-md-3 col-xs-3 tc">
+												<p>活动</p>
+											</div>
+											<div class="activity-addr col-md-2 col-xs-2 tc">
+												<p>活动地点</p>
+											</div>
+											<div class="activity-time-title col-md-5 col-xs-5 tc">
+												<p>活动时间</p>
+											</div>
+											<div class="activity-num col-md-2 col-xs-2 tc">
+												<p>参加人数</p>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="blank10"></div>
+									</li>
+									<?php
+									$actHandle = new ActivityHandle();
+									$rows = $actHandle->getCreateActivitys($_SESSION['userid']);
+									foreach ($rows as $row):
+										?>
+										<li>
+											<div class="activity row">
+												<?php
+												$activityid = $row['activityid'];
+												echo "<a href='activityDetail.php?activityid=$activityid'>"
+												?>
+												<div class="activity-name col-md-3 col-xs-3 tc">
+													<?php $name = $row['name'];
+													echo "<p>$name</p>";
+													?>
+													<!--													<p>马拉松</p>-->
+												</div>
+												<div class="activity-addr col-md-2 col-xs-2 tc">
+													<?php
+													$address = $row['address'];
+													echo "<p>$address</p>"
+													?>
+												</div>
+												<div class="activity-time col-md-5 col-xs-5 tc">
+													<p>开始:<?php echo $row['startTime'] ?></p>
+													<p>结束:<?php echo $row['endTime'] ?></p>
+												</div>
+												<div class="activity-num col-md-2 col-xs-2 tc">
+													<p><?php echo $row['peopleNum'] ?>人</p>
+												</div>
+												</a>
+
+											</div>
+										</li>
+									<?php endforeach; ?>
+
+								</ul>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="join-activity-list">
+							<div class="activity-list-panel">
+								<div class="activity-list-title">
+									<p>活动列表</p>
+								</div>
+								<ul class="activity-list">
+									<li>
+										<div class="row">
+											<div class="activity-name col-md-3 col-xs-3 tc">
+												<p>活动</p>
+											</div>
+											<div class="activity-addr col-md-2 col-xs-2 tc">
+												<p>活动地点</p>
+											</div>
+											<div class="activity-time-title col-md-5 col-xs-5 tc">
+												<p>活动时间</p>
+											</div>
+											<div class="activity-num col-md-2 col-xs-2 tc">
+												<p>参加人数</p>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="blank10"></div>
+									</li>
+									<?php
+									$actHandle = new ActivityHandle();
+									$rows = $actHandle->getJoinActivitys($_SESSION['userid']);
+									foreach ($rows as $row):
+										?>
+										<li>
+											<div class="activity row">
+												<?php
+												$activityid = $row['activityid'];
+												echo "<a href='activityDetail.php?activityid=$activityid'>"
+												?>
+												<div class="activity-name col-md-3 col-xs-3 tc">
+													<?php $name = $row['name'];
+													echo "<p>$name</p>";
+													?>
+													<!--													<p>马拉松</p>-->
+												</div>
+												<div class="activity-addr col-md-2 col-xs-2 tc">
+													<?php
+													$address = $row['address'];
+													echo "<p>$address</p>"
+													?>
+												</div>
+												<div class="activity-time col-md-5 col-xs-5 tc">
+													<p>开始:<?php echo $row['startTime'] ?></p>
+													<p>结束:<?php echo $row['endTime'] ?></p>
+												</div>
+												<div class="activity-num col-md-2 col-xs-2 tc">
+													<p><?php echo $row['peopleNum'] ?>人</p>
+												</div>
+												</a>
+
+											</div>
+										</li>
+									<?php endforeach; ?>
+
+								</ul>
+							</div>
+						</div>
 					</div>					
 				</div>
 
