@@ -85,6 +85,7 @@ $actInfo = $actHandle->getActivityInfo($activityid,$userid);
 					<img class="img-circle img-responsive" src="../images/run1.png">
 				</div>
 				<div class="tc">
+                    <h1 style="display: none"><?php echo "$activityid";?></h1>
 					<h2><?php echo $actInfo['name'] ?></h2>
 					<h3>活动介绍</h3>
 					<p><?php echo $actInfo['intro'] ?></p>
@@ -99,7 +100,7 @@ $actInfo = $actHandle->getActivityInfo($activityid,$userid);
 					if($isJoin){
 						$isCreator = $actInfo['isCreator'];
 						if($isCreator){
-							echo "<button id='modact-btn' class='col-center-block btn'>修改活动</button><br><button id='delact-btn' class='col-center-block btn'>删除活动</button>";
+							echo "<button id='delact-btn' class='col-center-block btn'>删除活动</button>";
 
 						}else{
 							echo "<button id='quitact-btn' class='col-center-block btn'>退出活动</button>";
@@ -158,7 +159,9 @@ $actInfo = $actHandle->getActivityInfo($activityid,$userid);
 
                     <div class="follow-panel">
                         <ul class="follow-list">
-                            <?php foreach ($actInfo['memberary'] as $member):
+                            <?php
+                                $memberary = $actInfo['memberary'];
+                                foreach ($memberary as $member):
 
                                 ?>
                                 <li>
@@ -213,7 +216,66 @@ $actInfo = $actHandle->getActivityInfo($activityid,$userid);
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- 包括所有已编译的插件 -->
     <script src="../js/bootstrap.min.js"></script>
+    <script>
 
+        var activityidStr = $(".activity-base-info h1").text();
+        var useridStr = <?php echo $_SESSION['userid']; ?>;
+
+        $("#modact-btn").click(function () {
+
+        });
+        $("#delact-btn").click(function () {
+
+            $.post("../php/businesslogic/activitybl/activity.php",
+                {
+                    method:"delactivity",
+                    activityid:activityidStr,
+                    userid:useridStr
+                },
+                function (data,status){
+                    if(data=="TRUE"){
+                        location.href = "activity.php";
+                    }else{
+                        alert(data);
+                    }
+                });
+        });
+        $("#quitact-btn").click(function () {
+
+            $.post("../php/businesslogic/activitybl/activity.php",
+                {
+                    method:"quitactivity",
+                    activityid:activityidStr,
+                    userid:useridStr
+                },
+                function (data,status){
+                    if(data=="TRUE"){
+                        location.href = "activityDetail.php?activityid="+activityidStr;
+                    }else{
+                        alert(data);
+                    }
+                });
+        });
+        $("#join-btn").click(function () {
+
+            alert(activityidStr);
+            alert(useridStr);
+            $.post("../php/businesslogic/activitybl/activity.php",
+                {
+                    method:"joinactivity",
+                    activityid:activityidStr,
+                    userid:useridStr
+                },
+                function (data,status){
+                    if(data=="TRUE"){
+                        location.href = "activityDetail.php?activityid="+activityidStr;
+                    }else{
+                        alert(data);
+                    }
+                });
+        });
+
+    </script>
 	</body>
 </html>
 

@@ -3,7 +3,7 @@
 	if(!isset($_SESSION['userid'])){
 		header('Location:login.html');
 	}else{
-		echo $_SESSION['userid']."this is userid<br>";
+//		echo $_SESSION['userid']."this is userid<br>";
 	}
 //	if($_SESSION['userid']==""){
 //		echo 'wooooooooo';
@@ -86,7 +86,7 @@
 					
 					<div class="today_sport" style="height: 240px">
 						
-						<div class="run-distance col-md-4">
+						<div class="run-distance col-md-4 col-xs-12">
 							<div class="runImg">
 								<img class="img-circle img-responsive" src="../images/run.jpg">
 							</div>
@@ -99,7 +99,7 @@
 								</p>
 							</div>
 						</div>
-						<div class="run-time col-md-4">
+						<div class="run-time col-md-4 col-xs-12">
 							<div class="timeImg">
 								<img class="img-circle img-responsive" src="../images/time.jpg">
 							</div>
@@ -112,7 +112,7 @@
 									</span></p>
 							</div>
 						</div>
-						<div class="run-rank col-md-4">
+						<div class="run-rank col-md-4 col-xs-12">
 							<div class="rankImg">
 								<img class="img-circle img-responsive" src="../images/rank.jpg">
 							</div>
@@ -130,10 +130,10 @@
 				<div class="text-center">
 					<h1>本周的运动情况</h1>
 					<div class="weak_sport" style="height: 240px">
-						<div class="run-distance col-md-6">
+						<div class="run-distance col-md-6 col-xs-12">
 							<div id='canvasDiv1'></div>
 						</div>
-						<div class="run-time col-md-6">
+						<div class="run-time col-md-6 col-xs-12">
 							<div id='canvasDiv2'></div>
 						</div>
 					</div>
@@ -148,7 +148,7 @@
 					<h1>您加入以来的运动情况</h1>
 					<div class="today_sport" style="height: 200px">
 						
-						<div class="run-distance col-md-4">
+						<div class="run-distance col-md-4 col-xs-12">
 							<div class="runImg">
 								<img class="img-circle img-responsive" src="../images/run1.png">
 							</div>
@@ -160,7 +160,7 @@
 									</span></p>
 							</div>
 						</div>
-						<div class="run-time col-md-4">
+						<div class="run-time col-md-4 col-xs-12">
 							<div class="timeStatistic">
 								<img class="img-circle img-responsive" src="../images/time.jpg">
 							</div>
@@ -171,7 +171,7 @@
 									</span></p>
 							</div>
 						</div>
-						<div class="run-rank col-md-4">
+						<div class="run-rank col-md-4 col-xs-12">
 							<div class="rankImg">
 								<img class="img-circle img-responsive" src="../images/rank.jpg">
 							</div>

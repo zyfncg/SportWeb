@@ -31,6 +31,7 @@ img{
 }
 #page-body{
 	max-width: 1000px;
+	min-width: 450px;
 	margin-left:auto; 
 	margin-right:auto;
 }
@@ -109,7 +110,7 @@ img{
 .creatorInfo{
 	margin: 10px 20px;
 }
-.createActivityPanel{
+.createActivityPanel,.updateActivityPanel{
 	height: 600px;
 	padding: 30px 50px; 
 	background-color: #e7e7e7;
@@ -377,9 +378,9 @@ img{
 	max-height: 160px;
 }
 
-/*.weak_sport{*/
-	/*padding-left: 30px;*/
-/*}*/
+.weak_sport{
+	padding-left: 30px;
+}
 
 /*$colors: #E74C3C, #0072B5, #2C3E50;*/
 

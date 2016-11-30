@@ -3,7 +3,7 @@ session_start();
 if(!isset($_SESSION['userid'])){
 	header('Location:login.html');
 }else{
-	echo $_SESSION['userid']."this is userid<br>";
+//	echo $_SESSION['userid']."this is userid<br>";
 }
 
 require '../php/businesslogic/contactbl/contact.php';
@@ -11,6 +11,7 @@ $rows = getDetail($_SESSION['userid'],$_GET['friendid']);
 $simple = $rows->getSimple();
 $todaysport = $rows->getTodaysport();
 $allsport = $rows->getAllsport();
+$friends = $rows->getFriends();
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -133,7 +134,6 @@ $allsport = $rows->getAllsport();
 					<div class="follow-panel">
 						<ul class="follow-list">
 							<?php
-								$friends = getFriends($_GET['friendid']);
 								foreach ($friends as $row) :
 								$friendid = $row->getUserid();
 								if($friendid==$_SESSION['userid']){
@@ -156,14 +156,14 @@ $allsport = $rows->getAllsport();
 										</div>
 									</a>
 									<div class="friend-grade col-md-2 col-xs-3 col-sm-3">
-										<p><?php echo $row->getGrade() ?></p>
+										<p><?php echo $row->getGrade()." 级" ?></p>
 									</div>
 									<div class="option pull-right">
 										<?php
 											if($row->getIsCare()){
-												echo "<a href='#' data-toggle='tooltip' title='点击取消关注'><span class='glyphicon glyphicon-star'></span></a>";
+												echo "<a id='$friendid' data-toggle='tooltip' title='取消关注'><span class='glyphicon glyphicon-star'></span></a>";
 											}else{
-												echo "<a href='#' data-toggle='tooltip' title='点击关注'><span class='glyphicon glyphicon-star-empty'></span></a>";
+												echo "<a id='$friendid' data-toggle='tooltip' title='关注'><span class='glyphicon glyphicon-star-empty'></span></a>";
 											}
 										?>
 
@@ -186,6 +186,52 @@ $allsport = $rows->getAllsport();
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- 包括所有已编译的插件 -->
     <script src="../js/bootstrap.min.js"></script>
+	<?php foreach ($friends as $row) :
+		$friendid = $row->getUserid();
+		$userid = $_SESSION['userid'];
+		if($friendid != $userid){
+			echo <<<EOT
+		<script>
+		$("#$friendid").click(function(){
+				if($("#$friendid").attr("title")=="取消关注"){
+					var useridText = "$userid";
+					var friendidText = "$friendid";
+					$.post("../php/businesslogic/contactbl/contact.php",
+						{
+							method:"del",
+							userid:useridText,
+							friendid:friendidText
+						},
+						function(data,status){
+							if(data=="TRUE"){
+								$("#$friendid").attr("title","关注");
+								$("#$friendid span").attr("class","glyphicon glyphicon-star-empty");
+							}
+							
+						});
+				}else{
+					var useridText = "$userid";
+					var friendidText = "$friendid";
+					$.post("../php/businesslogic/contactbl/contact.php",
+						{
+							method:"add",
+							userid:useridText,
+							friendid:friendidText
+						},
+						function(data,status){
+							if(data=="TRUE"){
+								$("#$friendid").attr("title","取消关注");
+								$("#$friendid span").attr("class","glyphicon glyphicon-star");
+							}	
+						});
+				}
+		});
+	</script>
+EOT;
+		}
+
+	endforeach;
+	?>
 
 	</body>
 </html>

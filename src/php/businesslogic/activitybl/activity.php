@@ -7,6 +7,56 @@
  */
 include "activityHandle.php";
 $actHandel = new ActivityHandle();
+
+if(isset($_POST['method'])){
+    $method = $_POST['method'];
+    if($method == "createactivity"){
+        $activityid = $_POST['activityid'];
+        $creator = $_POST['creator'];
+        $name = $_POST['name'];
+        $address = $_POST['address'];
+        $startTime = $_POST['startTime'];
+        $endTime = $_POST['endTime'];
+        $intro = $_POST['intro'];
+        $actInfo = array("aciivityid"=>$activityid,"creator"=>$creator,"name"=>$name,"address"=>$address,
+            "startTime"=>$startTime,"endTime"=>$endTime,"intro"=>$intro);
+        $ret = addActivity($activityid,$actInfo);
+        if($ret){
+            echo "TRUE";
+        }else{
+            echo "网络错误，请重试";
+        }
+        exit;
+    }
+    $activityid = $_POST['activityid'];
+    $userid = $_POST['userid'];
+
+    if($method == "joinactivity"){
+        $ret = addMember($activityid,$userid);
+        if($ret){
+            echo "TRUE";
+        }else{
+            echo "网络错误，请重试";
+        }
+    }
+    if($method == "quitactivity"){
+        $ret = delMember($activityid,$userid);
+        if($ret){
+            echo "TRUE";
+        }else{
+            echo "网络错误，请重试";
+        }
+    }
+    if($method == "delactivity"){
+        $ret = delActivity($activityid);
+        if($ret){
+            echo "TRUE";
+        }else{
+            echo "网络错误，请重试";
+        }
+    }
+}
+
 function getActivityList(){
     $actHandle = new ActivityHandle();
     return $actHandle->getActivityList();

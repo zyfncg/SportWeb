@@ -74,11 +74,11 @@ CREATE TABLE activity(
 	peopleNum int DEFAULT 1,
 	intro TEXT
 );
-INSERT INTO activity(activityid,creator,name,address,startTime,endTime,peopleNum) VALUES('138123412342016-11-26','13812341234','马拉松','南京','2016-12-01 13:00','2016-12-01 15:00',2);
-INSERT INTO activity(activityid,creator,name,address,startTime,endTime,peopleNum) VALUES('138123412342016-11-27','13812341234','马拉松1','南京','2016-12-01 13:00','2016-12-01 15:00',2);
-INSERT INTO activity(activityid,creator,name,address,startTime,endTime,peopleNum) VALUES('138123412342016-11-28','13812341234','马拉松2','南京','2016-12-01 13:00','2016-12-01 15:00',2);
-INSERT INTO activity(activityid,creator,name,address,startTime,endTime,peopleNum) VALUES('138123412342016-11-29','13812341234','马拉松3','南京','2016-12-01 13:00','2016-12-01 15:00',2);
-INSERT INTO activity(activityid,creator,name,address,startTime,endTime,peopleNum) VALUES('131111111112016-11-29','13111111111','环玄武湖骑行','南京','2016-12-01 13:00','2016-12-01 15:00',2);
+INSERT INTO activity(activityid,creator,name,address,startTime,endTime,peopleNum) VALUES('1381234123420161126','13812341234','马拉松','南京','2016-12-01 13:00','2016-12-01 15:00',2);
+INSERT INTO activity(activityid,creator,name,address,startTime,endTime,peopleNum) VALUES('1381234123420161127','13812341234','马拉松1','南京','2016-12-01 13:00','2016-12-01 15:00',2);
+INSERT INTO activity(activityid,creator,name,address,startTime,endTime,peopleNum) VALUES('1381234123420161128','13812341234','马拉松2','南京','2016-12-01 13:00','2016-12-01 15:00',2);
+INSERT INTO activity(activityid,creator,name,address,startTime,endTime,peopleNum) VALUES('1381234123420161129','13812341234','马拉松3','南京','2016-12-01 13:00','2016-12-01 15:00',2);
+INSERT INTO activity(activityid,creator,name,address,startTime,endTime,peopleNum) VALUES('1311111111120161129','13111111111','环玄武湖骑行','南京','2016-12-01 13:00','2016-12-01 15:00',2);
 
 DROP TABLE IF EXISTS member;
 CREATE TABLE member(

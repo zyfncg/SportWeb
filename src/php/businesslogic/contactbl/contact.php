@@ -10,21 +10,20 @@ $contHandle = new ContactHandle();
 if(isset($_POST['method'])){
     $userid = $_POST['userid'];
     $friendid = $_POST['friendid'];
-    echo $friendid."<br>";
     $method = $_POST['method'];
     if($method == "del"){
         $ret = $contHandle->delFriend($userid,$friendid);
         if($ret){
-            echo "true";
+            echo "TRUE";
         }else{
-            echo "error";
+            echo "ERROR";
         }
     }elseif ($method == "add"){
         $ret = $contHandle->addFriend($userid,$friendid);
         if($ret){
-            echo "true";
+            echo "TRUE";
         }else{
-            echo "error";
+            echo "ERROR";
         }
     }
 }

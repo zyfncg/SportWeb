@@ -12,18 +12,21 @@ class DetailInfo
     private $simple;
     private $todaysport;
     private $allsport;
+    private $friends;
 
     /**
      * DetailInfo constructor.
      * @param $simple
      * @param $todaysport
      * @param $allsport
+     * @param $friends
      */
-    public function __construct($simple, $todaysport, $allsport)
+    public function __construct($simple, $todaysport, $allsport, $friends)
     {
         $this->simple = $simple;
         $this->todaysport = $todaysport;
         $this->allsport = $allsport;
+        $this->friends = $friends;
     }
 
 
@@ -49,6 +52,14 @@ class DetailInfo
     public function getAllsport()
     {
         return $this->allsport;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFriends()
+    {
+        return $this->friends;
     }
 
 

@@ -33,7 +33,30 @@ class ContactHandle{
                 $grade = $rowfriend['grade'];
                 $pciURL = $rowfriend['picURL'];
                 $friend = new SimpleInfo($friendid1,$username,$grade,$pciURL);
-                $sql1 = "select * from contact where hostid = '$userid' and friendid = '$friendid1'";
+                $friend->setIsCare(TRUE);
+
+                $friendList[] = $friend;
+            }
+
+        }
+        return $friendList;
+    }
+    private function getFriendList($hostid,$userid){
+        $friendList = array();
+        $sql = "select * from contact where hostid = '$userid'";
+        $ret = $this->db->find($sql);
+
+        while($row = $ret->fetchArray(SQLITE3_ASSOC)){
+            $friendid = $row['friendid'];
+            $sql = "select userid,username,grade,picURL from users where userid = '$friendid'";
+            $result = $this->db->find($sql);
+            if($rowfriend = $result->fetchArray(SQLITE3_ASSOC)){
+                $friendid1 = $rowfriend['userid'];
+                $username = $rowfriend['username'];
+                $grade = $rowfriend['grade'];
+                $pciURL = $rowfriend['picURL'];
+                $friend = new SimpleInfo($friendid1,$username,$grade,$pciURL);
+                $sql1 = "select * from contact where hostid = '$hostid' and friendid = '$friendid1'";
                 $check = $this->db->find($sql1);
                 if($check_care = $check->fetchArray(SQLITE3_ASSOC)){
                     $friend->setIsCare(TRUE);
@@ -61,7 +84,8 @@ class ContactHandle{
         $sportHandle = new StatisticHandle();
         $allsport = $sportHandle->getStatisticsAll($friendid);
         $todaysport = $sportHandle->getStatisticsToday($friendid);
-        $result = new DetailInfo($info,$todaysport,$allsport);
+        $friends = $this->getFriendList($userid,$friendid);
+        $result = new DetailInfo($info,$todaysport,$allsport,$friends);
         return $result;
     }
     public function addFriend($userid ,$friendid){

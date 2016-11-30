@@ -67,6 +67,7 @@ class ActivityHandle{
         $sql = "select * from memberView where activityid = '$activityid'";
         $ret1 = $this->db->find($sql);
         $isJoin = FALSE;
+        $isCare = FALSE;
         while($memb = $ret1->fetchArray(SQLITE3_ASSOC)){
             $memberid = $memb['memberid'];
             if($userid == $memberid){
@@ -78,8 +79,6 @@ class ActivityHandle{
                 $ret2 = $this->db->find($sql);
                 if($check = $ret2->fetchArray(SQLITE3_ASSOC)){
                     $isCare = TRUE;
-                }else{
-                    $isCare = FALSE;
                 }
             }
 
@@ -94,6 +93,7 @@ class ActivityHandle{
         if($act = $ret->fetchArray(SQLITE3_ASSOC)){
             $creatorid = $act['creator'];
             $isCreator = ($userid == $creatorid);
+            $isCare = FALSE;
             $sql = "select * from users where userid='$creatorid'";
             $create = $this->db->find($sql);
             if($creatInfo = $create->fetchArray(SQLITE3_ASSOC)){
@@ -106,8 +106,6 @@ class ActivityHandle{
                     $ret2 = $this->db->find($sql);
                     if($check = $ret2->fetchArray(SQLITE3_ASSOC)){
                         $isCare = TRUE;
-                    }else{
-                        $isCare = FALSE;
                     }
                 }
 
@@ -119,8 +117,9 @@ class ActivityHandle{
             $activity = array("activityid"=>$activityid,"creator"=>$creator,"name"=>$act['name'], "address"=>$act['address'],
                 "startTime"=>$act['startTime'],"endTime"=>$act['endTime'],"intro"=>$act['intro'], "peopleNum"=>$act['peopleNum'],
                 "isJoin"=>$isJoin,"isCreator"=>$isCreator,"creatorInfo"=>$creator,"memberary"=>$memberary);
+            return $activity;
         }
-        return $activity;
+
     }
     public function addActivity($activityid,$actInfo){
         $name = $actInfo['name'];
@@ -131,7 +130,7 @@ class ActivityHandle{
         $intro = $actInfo['intro'];
         $sql = <<<EOT
             insert into activity(activityid,creator,name,address,startTime,endTime,peopleNum,intro) 
-            values("$activityid","$creator","$name","$address","$startTime","$endTime",1,"$intro");
+            values('$activityid','$creator','$name','$address','$startTime','$endTime',1,'$intro');
 EOT;
         $ret = $this->db->operate($sql);
 
@@ -155,7 +154,7 @@ EOT;
         $sql = "delete from member where activityid='$activityid'";
         $ret = $this->db->operate($sql);
         if($ret){
-            $sql = "delete from activty where activityid='$activityid'";
+            $sql = "delete from activity where activityid='$activityid'";
             $ret = $this->db->operate($sql);
         }
         return $ret;

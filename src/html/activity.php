@@ -205,11 +205,11 @@ require '../php/businesslogic/activitybl/activity.php';
 							<div class="createActivityPanel">
 								<h2 class="tc">创建活动</h2>
 								<hr>
-								<form class="form-horizontal" role="form">
+								<div class="form-horizontal">
 								   <div class="form-group">
 								      <label for="actName" class="col-sm-2 control-label">活动名称</label>
 								      <div class="col-sm-10">
-								         <input type="text" class="form-control" id="actName" placeholder="">
+								         <input type="text" class="form-control" id="actName" placeholder="" required>
 								      </div>
 								   </div>
 								   <div class="form-group">
@@ -221,13 +221,13 @@ require '../php/businesslogic/activitybl/activity.php';
 								   <div class="form-group">
 								      <label for="actAddr" class="col-sm-2 control-label">活动地点</label>
 								      <div class="col-sm-7">
-								         <input type="text" class="form-control" id="actAddr" placeholder="">
+								         <input type="text" class="form-control" id="actAddr" placeholder="" required>
 								      </div>
 								   </div>
 									<div class="form-group">
 							      		<label for="startDate" class="col-sm-2 control-label">开始时间</label>
 	                					<div class="input-group date form_datetime col-sm-6" data-date="" data-date-format="yyyy年mm月dd日 hh:ii" data-link-field="startDate" data-link-format="yyyy-mm-dd hh:ii" style="padding-left:15px;">
-						                    <input class="form-control" size="16" type="text" value="" readonly>
+						                    <input class="form-control" size="16" type="text" value="" readonly required>
 											<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 						                </div>
 						                <input type="hidden" id="startDate" value="" /><br/>
@@ -235,17 +235,17 @@ require '../php/businesslogic/activitybl/activity.php';
 							   		<div class="form-group">
 							      		<label for="endDate" class="col-sm-2 control-label">结束时间</label>
 	                					<div class="input-group date form_datetime col-sm-6" data-date="" data-date-format="yyyy年mm月dd日 hh:ii" data-link-field="endDate" data-link-format="yyyy-mm-dd hh:ii" style="padding-left:15px;">
-						                    <input class="form-control" size="16" type="text" value="" readonly>
+						                    <input class="form-control" size="16" type="text" value="" readonly required>
 											<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 						                </div>
 						                <input type="hidden" id="endDate" value="" /><br/>
 							   		</div>
 									<div class="form-group">
 								    	<div class="col-sm-offset-2 col-sm-10">
-								         	<button type="submit" class="btn btn-default">确认</button>
+								         	<button id="ok" class="btn btn-default">确认</button>
 								      	</div>
 								   </div>
-								</form>
+								</div>
 							</div>
 						</div>
 						<div class="tab-pane fade" id="create-activity-list">
@@ -398,8 +398,37 @@ require '../php/businesslogic/activitybl/activity.php';
 		startView: 2,
 		forceParse: 0,
         showMeridian: 1
-    });
+    	});
+		$("#ok").click(function () {
+			var time = new Date();
+			var timeStr = time.getTime();
+			var userid = <?php $userid=$_SESSION['userid']; echo "$userid"; ?>;
+			var activityidStr = userid + "" + timeStr;
+			var nameStr = $("#actName").val();
+			var addressStr = $("#actAddr").val();
+			var startTimeStr = $("#startDate").val();
+			var endTimeStr = $("#endDate").val();
+			var introStr = $("#activityIntro").val();
+			alert(userid);
+			$.post("../php/businesslogic/activitybl/activity.php",
+				{
+					method:"createactivity",
+					activityid:activityidStr,
+					creator:userid,
+					name:nameStr,
+					address:addressStr,
+					startTime:startTimeStr,
+					endTime:endTimeStr,
+					intro:introStr
+				},
+				function (data,state) {
+					alert(data);
+					if(data == "TRUE"){
+						location.href = "activity.php";
+					}
+				});
 
+		});
     </script>
 	</body>
 </html>

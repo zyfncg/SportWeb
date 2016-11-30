@@ -82,8 +82,8 @@ $rows = getFriends($_SESSION['userid']);
 		<div class="infobody">
 			
 			<div class="row">
-				<div class="col-md-4">
-					<div class="userinfo" style="height: 200px">
+				<div class="col-md-4 col-xs-12">
+					<div class="userinfo" style="height: 350px">
 						<div class="user-header">
 							<div class="user-header-img tc">
 								<img src="../images/user1.jpg">
@@ -147,7 +147,7 @@ $rows = getFriends($_SESSION['userid']);
 												</div>
 											</a>
 												<div class="friend-grade col-md-2 col-xs-3 col-sm-3">
-													<p><?php echo $row->getGrade() ?></p>
+													<p><?php echo $row->getGrade()." 级" ?></p>
 												</div>
 												<div class="option pull-right">
 
@@ -199,7 +199,6 @@ $rows = getFriends($_SESSION['userid']);
 							friendid:friendidText
 						},
 						function(data,status){
-							alert(data);
 							$("#$friendid").attr("title","关注");
 							$("#$friendid span").attr("class","glyphicon glyphicon-star-empty");
 						});
@@ -213,7 +212,6 @@ $rows = getFriends($_SESSION['userid']);
 							friendid:friendidText
 						},
 						function(data,status){
-							alert(data);
 							$("#$friendid").attr("title","取消关注");
 							$("#$friendid span").attr("class","glyphicon glyphicon-trash");
 						});
