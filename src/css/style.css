@@ -19,7 +19,7 @@ img{
 	margin-left:auto; 
 	margin-right:auto;
 }
-#friendid,#userid{
+#friendid,#userid,#creatorid,#memberid{
 	display: none;
 }
 #home-page-body{
@@ -252,6 +252,7 @@ img{
 	
 }
 .list-panel .activity-list-panel{
+	min-width: 510px;
 	height: 690px;
 	padding-top: 30px;
 	padding-left: 20px;
@@ -342,6 +343,9 @@ img{
 }
 .member .creator{
 	padding: 5px 5px 5px 45px;
+}
+.member .follower{
+	padding: 5px 5px 5px 20px;
 }
 .navbar-brand span{
 	font-size: 25px;

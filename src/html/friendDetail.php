@@ -53,7 +53,7 @@ $allsport = $rows->getAllsport();
 							<li><a href="index.html"><p class="top-tab">首页</p></a></li>
 							<li><a href="mySport.php"><p class="top-tab">我的运动</p></a></li>
 							<li class="active"><a href="friend.php"><p class="top-tab">好友</p></a></li>
-							<li><a href="activity.html"><p class="top-tab">活动</p></a></li>
+							<li><a href="activity.php"><p class="top-tab">活动</p></a></li>
 							
 
 							<li class="dropdown">
@@ -133,12 +133,16 @@ $allsport = $rows->getAllsport();
 					<div class="follow-panel">
 						<ul class="follow-list">
 							<?php
-							$friends = getFriends($_GET['friendid']);
-							foreach ($friends as $row) :
+								$friends = getFriends($_GET['friendid']);
+								foreach ($friends as $row) :
+								$friendid = $row->getUserid();
+								if($friendid==$_SESSION['userid']){
+									continue;
+								}
 							?>
 							<li>
 								<div class="friend row">
-									<?php $friendid = $row->getUserid();
+									<?php
 										echo "<a href='friendDetail.php?friendid=$friendid'>";
 									?>
 										<div class="friend-img col-md-2 col-xs-3 col-sm-3">

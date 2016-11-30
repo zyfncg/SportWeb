@@ -53,7 +53,7 @@ $rows = getFriends($_SESSION['userid']);
 							<li><a href="index.html"><p class="top-tab">首页</p></a></li>
 							<li><a href="mySport.php"><p class="top-tab">我的运动</p></a></li>
 							<li class="active"><a href="friend.php"><p class="top-tab">好友</p></a></li>
-							<li><a href="activity.html"><p class="top-tab">活动</p></a></li>
+							<li><a href="activity.php"><p class="top-tab">活动</p></a></li>
 							
 
 							<li class="dropdown">
@@ -130,8 +130,8 @@ $rows = getFriends($_SESSION['userid']);
 											
 											<?php $friendid = $row->getUserid();
 												$userid = $_SESSION['userid'];
-												echo "<p id='userid' $userid</p>>";
-												echo "<p id='friendid' $friendid</p>>";
+												echo "<p id='userid' $userid></p>";
+												echo "<p id='friendid' $friendid></p>";
 												echo "<a href='friendDetail.php?friendid=$friendid'>";
 											?>
 <!--											<a href="friendDetail.php">-->

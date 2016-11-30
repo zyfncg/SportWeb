@@ -1,3 +1,12 @@
+<?php
+session_start();
+if(!isset($_SESSION['userid'])){
+	header('Location:login.html');
+}else{
+//	echo $_SESSION['userid']."   this is userid<br>";
+}
+require '../php/businesslogic/activitybl/activity.php';
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -40,7 +49,7 @@
 							<li><a href="index.html"><p class="top-tab">首页</p></a></li>
 							<li><a href="mySport.php"><p class="top-tab">我的运动</p></a></li>
 							<li><a href="friend.php"><p class="top-tab">好友</p></a></li>
-							<li class="active"><a href="activity.html"><p class="top-tab">活动</p></a></li>
+							<li class="active"><a href="activity.php"><p class="top-tab">活动</p></a></li>
 							
 
 							<li class="dropdown">
@@ -136,16 +145,16 @@
 								<ul class="activity-list">
 									<li>
 										<div class="row">
-											<div class="activity-name col-md-3 tc">
+											<div class="activity-name col-md-3 col-xs-3 tc">
 												<p>活动</p>
 											</div>
-											<div class="activity-addr col-md-2 tc">
+											<div class="activity-addr col-md-2 col-xs-2 tc">
 												<p>活动地点</p>
 											</div>
-											<div class="activity-time-title col-md-5 tc">
+											<div class="activity-time-title col-md-5 col-xs-5 tc">
 												<p>活动时间</p>
 											</div>
-											<div class="activity-num col-md-2 tc">
+											<div class="activity-num col-md-2 col-xs-2 tc">
 												<p>参加人数</p>
 											</div>
 										</div>
@@ -153,127 +162,41 @@
 									<li>
 										<div class="blank10"></div>
 									</li>
+									<?php
+										$actHandle = new ActivityHandle();
+										$rows = $actHandle->getActivityList();
+										foreach ($rows as $row):
+									?>
 									<li>
 										<div class="activity row">
-											<a href="activityDetail.html">
-												<div class="activity-name col-md-3 tc">
-													<p>马拉松</p>
+											<?php
+												$activityid = $row['activityid'];
+												echo "<a href='activityDetail.php?activityid=$activityid'>"
+											?>
+												<div class="activity-name col-md-3 col-xs-3 tc">
+													<?php $name = $row['name'];
+														echo "<p>$name</p>";
+													?>
+<!--													<p>马拉松</p>-->
 												</div>
-												<div class="activity-addr col-md-2 tc">
-													<p>南京</p>
+												<div class="activity-addr col-md-2 col-xs-2 tc">
+													<?php
+														$address = $row['address'];
+														echo "<p>$address</p>"
+													?>
 												</div>
-												<div class="activity-time col-md-5 tc">
-													<p>开始：2016-10-19 12:20</p>
-													<p>结束：2016-10-19 15:40</p>
+												<div class="activity-time col-md-5 col-xs-5 tc">
+													<p>开始:<?php echo $row['startTime'] ?></p>
+													<p>结束:<?php echo $row['endTime'] ?></p>
 												</div>
-												<div class="activity-num col-md-2 tc">
-													<p>10人</p>
+												<div class="activity-num col-md-2 col-xs-2 tc">
+													<p><?php echo $row['peopleNum'] ?>人</p>
 												</div>
 											</a>
 											
 										</div>
 									</li>
-									<li>
-										<div class="activity row">
-											<a href="activityDetail.html">
-												<div class="activity-name col-md-3 tc">
-													<p>马拉松1</p>
-												</div>
-												<div class="activity-addr col-md-2 tc">
-													<p>南京</p>
-												</div>
-												<div class="activity-time col-md-5 tc">
-													<p>开始：2016-10-19 12:20</p>
-													<p>结束：2016-10-19 15:40</p>
-												</div>
-												<div class="activity-num col-md-2 tc">
-													<p>10人</p>
-												</div>
-											</a>
-											
-										</div>
-									</li>
-									<li>
-										<div class="activity row">
-											<a href="activityDetail.html">
-												<div class="activity-name col-md-3 tc">
-													<p>马拉松2</p>
-												</div>
-												<div class="activity-addr col-md-2 tc">
-													<p>南京</p>
-												</div>
-												<div class="activity-time col-md-5 tc">
-													<p>开始：2016-10-19 12:20</p>
-													<p>结束：2016-10-19 15:40</p>
-												</div>
-												<div class="activity-num col-md-2 tc">
-													<p>10人</p>
-												</div>
-											</a>
-											
-										</div>
-									</li>
-									<li>
-										<div class="activity row">
-											<a href="activityDetail.html">
-												<div class="activity-name col-md-3 tc">
-													<p>马拉松3</p>
-												</div>
-												<div class="activity-addr col-md-2 tc">
-													<p>南京</p>
-												</div>
-												<div class="activity-time col-md-5 tc">
-													<p>开始：2016-10-19 12:20</p>
-													<p>结束：2016-10-19 15:40</p>
-												</div>
-												<div class="activity-num col-md-2 tc">
-													<p>10人</p>
-												</div>
-											</a>
-											
-										</div>
-									</li>
-									<li>
-										<div class="activity row">
-											<a href="activityDetail.html">
-												<div class="activity-name col-md-3 tc">
-													<p>马拉松4</p>
-												</div>
-												<div class="activity-addr col-md-2 tc">
-													<p>南京</p>
-												</div>
-												<div class="activity-time col-md-5 tc">
-													<p>开始：2016-10-19 12:20</p>
-													<p>结束：2016-10-19 15:40</p>
-												</div>
-												<div class="activity-num col-md-2 tc">
-													<p>10人</p>
-												</div>
-											</a>
-											
-										</div>
-									</li>
-									<li>
-										<div class="activity row">
-											<a href="activityDetail.html">
-												<div class="activity-name col-md-3 tc">
-													<p>马拉松5</p>
-												</div>
-												<div class="activity-addr col-md-2 tc">
-													<p>南京</p>
-												</div>
-												<div class="activity-time col-md-5 tc">
-													<p>开始：2016-10-19 12:20</p>
-													<p>结束：2016-10-19 15:40</p>
-												</div>
-												<div class="activity-num col-md-2 tc">
-													<p>10人</p>
-												</div>
-											</a>
-											
-										</div>
-									</li>
-									
+									<?php endforeach; ?>
 
 								</ul>
 							</div>
