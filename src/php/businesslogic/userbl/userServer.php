@@ -8,7 +8,7 @@
 require 'userHandle.php';
 $userHandle = new UserHandle();
 if(isset($_POST['username'])){
-    $userid = $_SESSION['userid'];
+    $userid = $_POST['userid'];
     $username = $_POST['username'];
     $grade = $_POST['grade'];
     $address = $_POST['address'];
@@ -16,13 +16,14 @@ if(isset($_POST['username'])){
     $gender = $_POST['gender'];
     $intro = $_POST['intro'];
     $user = array("userid"=>$userid,"username"=>$username,"address"=>$address,"grade"=>$grade,
-        "birthday"=>$birthday,"intor"=>$intro,"gender"=>$gender);
+        "birthday"=>$birthday,"intro"=>$intro,"gender"=>$gender);
     $ret = $userHandle->saveUser($user);
     if($ret){
         echo "TRUE";
     }else{
         echo "网络错误，请重试";
     }
+    exit;
 }
 function getUser($userid){
     $userHandle = new UserHandle();

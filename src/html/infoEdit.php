@@ -87,13 +87,13 @@ $user = getUser($_SESSION['userid']);
 						   <div class="form-group">
 						      <label for="userName" class="col-sm-2 control-label">用户名</label>
 						      <div class="col-sm-8">
-						         <input type="text" class="form-control" id="userName" name="username" placeholder="" value=<?php $username=$user['username']; echo $username ?>>
+						         <input type="text" class="form-control" id="userName" name="username" placeholder="" value='<?php $username=$user['username']; echo $username ?>'>
 						      </div>
 						   </div>
 						   <div class="form-group">
 						      <label for="userIntro" class="col-sm-2 control-label">个性签名</label>
 						      <div class="col-sm-8">
-						        <input type="text" class="form-control" id="userIntro" name="intro" value=<?php $intro=$user['intro']; echo "$intro" ?>>
+						        <input type="text" class="form-control" id="userIntro" name="intro" value='<?php $intro=$user['intro']; echo "$intro" ?>'>
 						      </div>
 						   </div>
 						   <div class="form-group">
@@ -110,7 +110,7 @@ $user = getUser($_SESSION['userid']);
 						   <div class="form-group">
 						      		<label for="birthday" class="col-sm-2 control-label">生日</label>
                 					<div class="input-group date form_date col-sm-6" data-date="" data-date-format="yyyy年mm月dd日" data-link-field="birthday" data-link-format="yyyy-mm-dd" style="padding-left:15px;">
-					                    <input class="form-control" size="16" type="text"  readonly value=<?php $birthday=$user['birthday']; echo $birthday; ?>>
+					                    <input class="form-control" size="16" type="text"  readonly value='<?php $birthday=$user['birthday']; echo $birthday; ?>'>
 										<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 					                </div>
 					                <input type="hidden" id="birthday" name="birthday" value="" /><br/>
@@ -118,7 +118,7 @@ $user = getUser($_SESSION['userid']);
 						   <div class="form-group">
 						      <label for="userAddr" class="col-sm-2 control-label">所在地</label>
 						      <div class="col-sm-4">
-						         <input type="text" class="form-control" id="userAddr" name="address" placeholder="" value=<?php $address=$user['address']; echo $address ?>>
+						         <input type="text" class="form-control" id="userAddr" name="address" placeholder="" value='<?php $address=$user['address']; echo $address ?>'>
 						      </div>
 						   </div>
 						   <hr>
@@ -213,11 +213,17 @@ $user = getUser($_SESSION['userid']);
     	});
     	
 		$("#submit-btn").click(function () {
+			var useridText = <?php $userid=$_SESSION['userid'];echo $userid; ?>;
+			var usernameText = $("#userName").val();
+			var addressText = $("#userAddr").val();
+			var introText = $("#userIntro").val();
+			var birthdayText = $("#birthday").val();
+			var genderText =  $("input[name='optionsRadiosinline']:checked").val();
 			$.ajax({
 				url:'../php/businesslogic/userbl/userServer.php',
 				type:"POST",
 				async:false,
-				data:$("#info-form").serialize(),
+				data:{"userid":useridText,"username":usernameText,"address":addressText,"intro":introText,"birthday":birthdayText,"gender":genderText},
 				dataType:"json",
 				success:function (data) {
 					alert(data);

@@ -45,7 +45,6 @@ class UserHandle{
 
     public function getUser($userid){
         $username = null;
-        $userid = null;
         $grade = null;
         $gender = null;
         $birthday = null;
