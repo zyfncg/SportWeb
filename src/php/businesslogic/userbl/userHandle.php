@@ -5,7 +5,7 @@
  * Date: 2016/11/3
  * Time: 17:09
  */
-require $_SERVER['DOCUMENT_ROOT'].'/src/php/businesslogic/statisticbl/statisticHandle.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/src/php/businesslogic/statisticbl/statisticHandle.php';
 class UserHandle{
 
     private $db;

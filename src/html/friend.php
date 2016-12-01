@@ -9,7 +9,7 @@ if(!isset($_SESSION['userid'])){
 //		echo 'wooooooooo';
 //
 //	}
-require '../php/businesslogic/contactbl/contact.php';
+include '../php/businesslogic/contactbl/contact.php';
 include '../php/businesslogic/userbl/userServer.php';
 $rows = getFriends($_SESSION['userid']);
 ?>
@@ -99,12 +99,12 @@ $rows = getFriends($_SESSION['userid']);
 							</div>
 						</div>
 						<div class="tc">
-							<h1>沉迷web</h1>
+							<h1><?php echo $usernmae;?></h1>
 						</div>
 						<div class="user-showinfo tc">
-							<p class="grade">等级: <span>1</span></p>
-							<p>累计运动里程：<span>3.6km</span></p>
-							<p>累计运动时间：<span>100小时</span></p>
+							<p class="grade">等级: <span><?php echo $grade;?></span></p>
+							<p>累计运动里程：<span><?php echo $distance." km";?></span></p>
+							<p>累计运动时间：<span><?php echo $time." min";?></span></p>
 						</div>
 					</div>
 				</div>

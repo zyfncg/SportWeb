@@ -11,6 +11,7 @@ class SportData{
     private $distance;
     private $day;
     private $time;
+    private $rank;
 
     /**
      * SportData constructor.
@@ -59,5 +60,21 @@ class SportData{
         return $this->time;
     }
 
+    /**
+     * @param mixed $rank
+     */
+    public function setRank($rank)
+    {
+        $this->rank = $rank;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getRank()
+    {
+        return $this->rank;
+    }
 
 }

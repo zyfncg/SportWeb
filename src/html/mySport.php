@@ -78,7 +78,7 @@
 
 	</div>
 	<div id="page-body">
-		<div class="container">
+		<div class="info-page-body">
 			<div class="tc">
 				<h1>今日的运动情况</h1>
 			</div>
@@ -117,7 +117,7 @@
 								<img class="img-circle img-responsive" src="../images/rank.jpg">
 							</div>
 							<div class="runText tc">
-								<p>今日运动排名 <span>8</span></p>
+								<p>今日运动排名 <span><?php echo $data->getRank() ?></span></p>
 							</div>
 						</div>
 					</div>
@@ -129,7 +129,7 @@
 				
 				<div class="text-center">
 					<h1>本周的运动情况</h1>
-					<div class="weak_sport" style="height: 240px">
+					<div class="weak_sport">
 						<div class="run-distance col-md-6 col-xs-12">
 							<div id='canvasDiv1'></div>
 						</div>
@@ -148,7 +148,7 @@
 					<h1>您加入以来的运动情况</h1>
 					<div class="today_sport" style="height: 200px">
 						
-						<div class="run-distance col-md-4 col-xs-12">
+						<div class="run-distance col-md-6 col-xs-12">
 							<div class="runImg">
 								<img class="img-circle img-responsive" src="../images/run1.png">
 							</div>
@@ -160,7 +160,7 @@
 									</span></p>
 							</div>
 						</div>
-						<div class="run-time col-md-4 col-xs-12">
+						<div class="run-time col-md-6 col-xs-12">
 							<div class="timeStatistic">
 								<img class="img-circle img-responsive" src="../images/time.jpg">
 							</div>
@@ -171,14 +171,7 @@
 									</span></p>
 							</div>
 						</div>
-						<div class="run-rank col-md-4 col-xs-12">
-							<div class="rankImg">
-								<img class="img-circle img-responsive" src="../images/rank.jpg">
-							</div>
-							<div class="runText tc">
-								<p>总运动排名 <span>8</span></p>
-							</div>
-						</div>
+
 					</div>
 					
 				</div>
@@ -251,7 +244,7 @@
 						decimalsnum:2,
 						width : 400,
 						height : 300,
-						border: 11,
+						border: 0,
 						align:"center",
             			offsetx:16,
             			offsety:-10,
@@ -285,8 +278,8 @@
 						shadow_color:'#c7c7c7',//设置阴影颜色
 						decimalsnum:2,
 						width : 400,
-						height : 300,
-						border: 0,
+						height : 280,
+						border: 20,
 						align:"center",
             			offsetx:16,
             			offsety:-10,

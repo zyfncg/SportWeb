@@ -85,7 +85,8 @@ $friends = $rows->getFriends();
 					<div class="userinfo" style="height: 360px">
 						<div class="user-header">
 							<div class="user-header-img tc">
-								<img src="../images/user2.jpg">
+								<?php $picURL=$simple->getPicURL();?>
+								<img src=<?php echo $picURL;?>>
 							</div>
 						</div>
 						<div class="tc">

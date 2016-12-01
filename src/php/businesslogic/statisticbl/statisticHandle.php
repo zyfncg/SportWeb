@@ -8,7 +8,7 @@
 
 //include $_SERVER['DOCUMENT_ROOT'].'../../database/database.php';
 include $_SERVER['DOCUMENT_ROOT'].'/src/php/database/database.php';
-require 'SportData.php';
+require_once 'SportData.php';
 class StatisticHandle{
     private $db;
 
@@ -23,8 +23,25 @@ class StatisticHandle{
     public function getStatisticsToday($userid){
         $today = date('Y-m-d');
         $data = $this->getDataByDay($userid,$today);
+        $sql = "select * from sport where daydate='$today' and userid in (select friendid from contact where hostid='$userid') order by distance,sportTime desc";
+        $ret = $this->db->find($sql);
+        $rank = 1;
+        $isSet = 0;
+        while($row = $ret->fetchArray(SQLITE3_ASSOC)){
+            $distance = $row['distance'];
+            if($data->getDistance()>=$distance){
+                $data->setRank($rank);
+                $isSet = 1;
+            }else{
+                $rank = $rank + 1;
+            }
+        }
+        if($isSet == 0){
+            $data->setRank($rank);
+        }
         return $data;
     }
+
     public function getStatisticsWeek($userid){
         $weekdata = array();
         for($i = -6; $i <= 0; $i++){

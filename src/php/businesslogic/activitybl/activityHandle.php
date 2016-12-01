@@ -5,7 +5,7 @@
  * Date: 2016/11/3
  * Time: 20:59
  */
-require dirname(__FILE__).'/../contactbl/contactHandle.php';
+require_once dirname(__FILE__).'/../contactbl/contactHandle.php';
 class ActivityHandle{
     private $db;
 

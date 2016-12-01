@@ -7,7 +7,7 @@
  */
 //require $_SERVER['DOCUMENT_ROOT'].'/src/php/database/database.php';
 require  'DetailInfo.php';
-require  dirname(__FILE__).'/../statisticbl/statisticHandle.php';
+require_once  dirname(__FILE__).'/../statisticbl/statisticHandle.php';
 class ContactHandle{
     private $db;
 
