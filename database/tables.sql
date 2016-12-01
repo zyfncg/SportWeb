@@ -6,7 +6,7 @@ CREATE TABLE users (
 	picURL char(255) DEFAULT "../img/defaultuser.png",
 	grade int DEFAULT 0,
 	birthday char(10),
-	gender char(4),
+	gender char(8),
 	address char(100),
 	intro char(256)
 );

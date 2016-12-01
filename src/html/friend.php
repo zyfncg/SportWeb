@@ -119,16 +119,6 @@ $rows = getFriends($_SESSION['userid']);
                     						<p>我的关注</p>
                     					</div>
                     				</div>
-                    				<div class="col-md-3 pull-right">
-                    				  <div class="input-group custom-search-form">
-                                        <input type="text" class="form-control" placeholder="Search...">
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default" type="button">
-                                                    <span class="glyphicon glyphicon-search"></span>
-                                                </button>
-                                            </span>
-                                       </div>
-                    				</div>
                     				
                     			</div>
                     			<hr>

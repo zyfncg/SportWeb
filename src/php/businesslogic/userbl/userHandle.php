@@ -70,14 +70,12 @@ class UserHandle{
     public function saveUser($user){
         $userid = $user['userid'];
         $username = $user['username'];
-        $grade = $user['grade'];
         $gender = $user['gender'];
         $birthday = $user['birthday'];
         $intro = $user['intro'];
         $address = $user['address'];
         $sql = <<<EOT
-            insert into users(userid,username,grade,address,birthday,gander,intro) VALUES 
-            ('$userid','$username','$grade','$address','$birthday','$gender','$intro');
+            update users  set username='$username',address='$address',birthday='$birthday',gender='$gender',intro='$intro' where userid='$userid';
 EOT;
         $ret = $this->db->operate($sql);
 
@@ -85,7 +83,17 @@ EOT;
     }
 
     public function updatePSW($pswInfo){
-
+        $userid = $pswInfo['userid'];
+        $oldpw = $pswInfo['oldpw'];
+        $newpw = $pswInfo['newpw'];
+        $sql = "select * from users where userid = '$userid' and password = '$oldpw'";
+        $check_query = $this->db->find($sql);
+        if($result = $check_query->fetchArray(SQLITE3_ASSOC)){
+            $sql = "update users set password='$newpw'";
+            $ret = $this->db->operate($sql);
+            return $ret;
+        }
+        return FALSE;
     }
     public function savepic($picInfo){
 

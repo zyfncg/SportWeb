@@ -109,11 +109,11 @@ $user = getUser($_SESSION['userid']);
 							</div>   
 						   <div class="form-group">
 						      		<label for="birthday" class="col-sm-2 control-label">生日</label>
-                					<div class="input-group date form_date col-sm-6" data-date="" data-date-format="yyyy年mm月dd日" data-link-field="birthday" data-link-format="yyyy-mm-dd" style="padding-left:15px;">
+                					<div class="input-group date form_date col-sm-6" data-date="" data-date-format="yyyy-mm-dd" data-link-field="birthday" data-link-format="yyyy-mm-dd" style="padding-left:15px;">
 					                    <input class="form-control" size="16" type="text"  readonly value='<?php $birthday=$user['birthday']; echo $birthday; ?>'>
 										<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 					                </div>
-					                <input type="hidden" id="birthday" name="birthday" value="" /><br/>
+					                <input type="hidden" id="birthday" name="birthday" value="<?php $birthday=$user['birthday']; echo $birthday; ?>" /><br/>
 						   </div>
 						   <div class="form-group">
 						      <label for="userAddr" class="col-sm-2 control-label">所在地</label>
@@ -123,9 +123,11 @@ $user = getUser($_SESSION['userid']);
 						   </div>
 						   <hr>
 							<div class="form-group">
-						    	<div class="col-sm-offset-2 col-sm-10">
+						    	<div class="col-sm-offset-2 col-sm-5">
 						         	<button id="submit-btn" class="btn btn-default">保存</button>
+									<span id="saveinfo-tip" style="color: #3e8f3e;"></span>
 						      	</div>
+
 						   </div>
 						</div>
 	              		
@@ -223,13 +225,12 @@ $user = getUser($_SESSION['userid']);
 				url:'../php/businesslogic/userbl/userServer.php',
 				type:"POST",
 				async:false,
-				data:{"userid":useridText,"username":usernameText,"address":addressText,"intro":introText,"birthday":birthdayText,"gender":genderText},
+				data:{"action":"saveinfo","userid":useridText,"username":usernameText,"address":addressText,"intro":introText,"birthday":birthdayText,"gender":genderText},
 				dataType:"json",
 				success:function (data) {
-					alert(data);
-					if(data=="TRUE"){
-						var tip = "<br><p style='color: #4cae4c'>保存成功</P>"
-						$("body").append(tip);
+					if(data.status=="TRUE"){
+						var tip = "保存成功"
+						$("#saveinfo-tip").text(tip);
 					}
 				}
 			});

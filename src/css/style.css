@@ -354,7 +354,16 @@ img{
 	font-style: oblique;
 	color: #333;	
 }
+.pw-panel{
+	max-width: 500px;
+	height: 400px;
+	margin: 0px auto;
+	padding: 50px 150px;
 
+	background-color: #9d9d9d;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
 .tc{
 	text-align: center;
 }

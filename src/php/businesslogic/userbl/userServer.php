@@ -7,23 +7,39 @@
  */
 require 'userHandle.php';
 $userHandle = new UserHandle();
-if(isset($_POST['username'])){
-    $userid = $_POST['userid'];
-    $username = $_POST['username'];
-    $grade = $_POST['grade'];
-    $address = $_POST['address'];
-    $birthday = $_POST['birthday'];
-    $gender = $_POST['gender'];
-    $intro = $_POST['intro'];
-    $user = array("userid"=>$userid,"username"=>$username,"address"=>$address,"grade"=>$grade,
-        "birthday"=>$birthday,"intro"=>$intro,"gender"=>$gender);
-    $ret = $userHandle->saveUser($user);
-    if($ret){
-        echo "TRUE";
-    }else{
-        echo "网络错误，请重试";
+if(isset($_POST['action'])){
+    if($_POST['action'] == "saveinfo"){
+        $userid = $_POST['userid'];
+        $username = $_POST['username'];
+        $address = $_POST['address'];
+        $birthday = $_POST['birthday'];
+        $gender = $_POST['gender'];
+        $intro = $_POST['intro'];
+        $user = array("userid"=>$userid,"username"=>$username,"address"=>$address,
+            "birthday"=>$birthday,"intro"=>$intro,"gender"=>$gender);
+        $ret = $userHandle->saveUser($user);
+        if($ret){
+            $doc = array("status"=>"TRUE");
+            echo json_encode($doc);
+        }else{
+            $doc = array("status"=>"FALSE");
+            echo json_encode($doc);
+        }
+        exit;
+    }elseif ($_POST['action'] == "savepw"){
+        $userid = $_POST['userid'];
+        $oldpw = $_POST['oldpw'];
+        $newpw = $_POST['newpw'];
+        $pwinfo = array("userid"=>$userid,"oldpw"=>$oldpw,"newpw"=>$newpw);
+        $ret = $userHandle->updatePSW($pwinfo);
+        if($ret){
+            echo "TRUE";
+        }else{
+            echo "FALSE";
+        }
+        exit;
     }
-    exit;
+
 }
 function getUser($userid){
     $userHandle = new UserHandle();

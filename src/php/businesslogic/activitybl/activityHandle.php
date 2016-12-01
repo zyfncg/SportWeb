@@ -163,7 +163,7 @@ EOT;
         $sql = "insert into member(activityid,memberid) values ('$activityid','$userid')";
         $ret = $this->db->operate($sql);
         if($ret){
-            $sql = "update activity set peopleNum=peopleNum+1";
+            $sql = "update activity set peopleNum=peopleNum+1 where activityid='$activityid'";
             $ret = $this->db->operate($sql);
         }
         return $ret;

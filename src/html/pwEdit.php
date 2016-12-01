@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(!isset($_SESSION['userid'])){
+	header('Location:login.html');
+}
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -63,12 +69,12 @@
         </nav>
 
 	</div>
-	<div class="info-page-body">
-		<div class="pw-panel" style="max-width: 500px; margin: 30px auto">
+	<div class="page-body">
+		<div class="pw-panel">
 			<div class="row col-center-block">
 				<div class="col-md-4"><label>旧密码</label></div>
 				<div class="col-md-8">
-					<input type="password">
+					<input type="password" id="old-pw" value="">
 				</div>
 				
 			</div>
@@ -76,20 +82,24 @@
 			<div class="row col-center-block">
 				<div class="col-md-4"><label>新密码</label></div>
 				<div class="col-md-8">
-					<input type="password">
+					<input type="password" id="new-pw" value="">
+					<p id="confirm-tip" style="color: #c12e2a"></p>
 				</div>
 				
 			</div>
+			<br>
 			<div class="row col-center-block">
 				<div class="col-md-4"><label>确认密码</label></div>
 				<div class="col-md-8">
-					<input type="password">
+					<input type="password" id="confirm-pw" value="">
 				</div>
 				
 			</div>
 			<div class="row col-center-block" style="max-width: 300px; margin: 30px auto">
-				<button class="btn col-center-block">保存</button>
+				<button id="save-btn" class="btn col-center-block">保存</button>
+				<p id="save-tip" class="col-center-block" style="color: #ae8c3b"></p>
 			</div>
+
 		</div>
 
 	</div>
@@ -100,6 +110,35 @@
     <!-- 包括所有已编译的插件 -->
     <script src="../js/bootstrap.min.js"></script>
 	<script src="../js/custom.js"></script>
-   
+    <script>
+		$("#save-btn").click(function () {
+			var useridText = <?php $userid=$_SESSION['userid'];echo $userid; ?>;
+			var oldpw = $("#old-pw").val();
+			var newpw = $("#new-pw").val();
+			var comfirmpw = $("#confirm-pw").val();
+			if(newpw==comfirmpw){
+				$.post("../php/businesslogic/userbl/userServer.php",
+					{
+						action:"savepw",
+						userid:useridText,
+						oldpw:oldpw,
+						newpw:newpw
+					},
+					function (data) {
+						if(data == "TRUE"){
+							$("#save-tip").text("修改成功");
+							$("#confirm-tip").text("");
+						}else{
+							$("#save-tip").text("密码错误，请重试");
+							$("#confirm-tip").text("");
+						}
+					}
+				);
+			}else{
+				$("#confirm-tip").text("密码不一致");
+				$("#save-tip").text("");
+			}
+		});
+	</script>
 	</body>
 </html>
