@@ -423,7 +423,6 @@ require '../php/businesslogic/activitybl/activity.php';
 					intro:introStr
 				},
 				function (data,state) {
-					alert(data);
 					if(data == "TRUE"){
 						location.href = "activity.php";
 					}
