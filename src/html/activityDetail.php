@@ -60,10 +60,10 @@ $actInfo = $actHandle->getActivityInfo($activityid,$userid);
                         		<span class="glyphicon glyphicon-user"></span><span class="caret"></span>
                     			</a>
                     			<ul class="dropdown-menu">
-                        			<li><a href="infoEdit.html"><span class="glyphicon glyphicon-user"></span>账户设置</a></li>
-                        			<li><a href="pwEdit.html"><span class="glyphicon glyphicon-cog"></span>密码修改</a></li>
+                        			<li><a href="infoEdit.php"><span class="glyphicon glyphicon-user"></span>账户设置</a></li>
+                        			<li><a href="pwEdit.php"><span class="glyphicon glyphicon-cog"></span>密码修改</a></li>
                         			<li class="divider"></li>
-                        			<li><a href="login.html"><span class="	glyphicon glyphicon-log-out"></span> Logout</a></li>
+                        			<li><a href="" id="logout"><span class="	glyphicon glyphicon-log-out"></span> Logout</a></li>
                     			</ul>
                     			<!-- /.dropdown-user -->
                 			</li>
@@ -216,6 +216,7 @@ $actInfo = $actHandle->getActivityInfo($activityid,$userid);
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- 包括所有已编译的插件 -->
     <script src="../js/bootstrap.min.js"></script>
+	<script src="../js/custom.js"></script>
     <script>
 
         var activityidStr = $(".activity-base-info h1").text();

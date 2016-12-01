@@ -7,12 +7,22 @@
  */
 //登录
 session_start();
+
+if(isset($_POST['action'])){
+    //注销登录
+    if($_POST['action'] == "logout"){
+        unset($_SESSION['userid']);
+        $doc = array("status"=>"TRUE");
+        echo json_encode($doc);
+        header('Location: ../../html/login.html');
+        exit;
+    }
+}
+
 $username = htmlspecialchars($_POST['username']);
 //$password = md5($_POST['password']);
 $password = $_POST['password'];
-//echo $username;
-//echo "<br>";
-//echo $password;
+
 //包含数据库连接文件
 include '../database/database.php';
 $db = DB::getInstance();
@@ -34,10 +44,3 @@ if($result = $check_query->fetchArray(SQLITE3_ASSOC)){
 }
 
 
-//注销登录
-if($_GET['action'] == "logout"){
-    unset($_SESSION['userid']);
-    unset($_SESSION['username']);
-    echo '注销登录成功！点击此处 <a href="login.html">登录</a>';
-    exit;
-}

@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(!isset($_SESSION['userid'])){
+	header('Location:login.html');
+}
+require '../php/businesslogic/userbl/userServer.php';
+$user = getUser($_SESSION['userid']);
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -49,10 +57,10 @@
                         		<span class="glyphicon glyphicon-user"></span><span class="caret"></span>
                     			</a>
                     			<ul class="dropdown-menu">
-                        			<li><a href="infoEdit.html"><span class="glyphicon glyphicon-user"></span>账户设置</a></li>
-                        			<li><a href="pwEdit.html"><span class="glyphicon glyphicon-cog"></span>密码修改</a></li>
+                        			<li><a href="infoEdit.php"><span class="glyphicon glyphicon-user"></span>账户设置</a></li>
+                        			<li><a href="pwEdit.php"><span class="glyphicon glyphicon-cog"></span>密码修改</a></li>
                         			<li class="divider"></li>
-                        			<li><a href="login.html"><span class="	glyphicon glyphicon-log-out"></span> Logout</a></li>
+                        			<li><a href="" id="logout"><span class="	glyphicon glyphicon-log-out"></span> Logout</a></li>
                     			</ul>
                     			<!-- /.dropdown-user -->
                 			</li>
@@ -75,17 +83,17 @@
 	        <div class="swiper-slide">
 	           <div class="content-slide">
 	              	<div class="infoEdit">
-	              		<form class="form-horizontal" role="form">
+	              		<div id="info-form" class="form-horizontal" role="form">
 						   <div class="form-group">
 						      <label for="userName" class="col-sm-2 control-label">用户名</label>
 						      <div class="col-sm-8">
-						         <input type="text" class="form-control" id="userName" placeholder="eg:咸鱼">
+						         <input type="text" class="form-control" id="userName" name="username" placeholder="" value=<?php $username=$user['username']; echo $username ?>>
 						      </div>
 						   </div>
 						   <div class="form-group">
 						      <label for="userIntro" class="col-sm-2 control-label">个性签名</label>
 						      <div class="col-sm-8">
-						        <input type="text" class="form-control" id="userIntro">
+						        <input type="text" class="form-control" id="userIntro" name="intro" value=<?php $intro=$user['intro']; echo "$intro" ?>>
 						      </div>
 						   </div>
 						   <div class="form-group">
@@ -102,31 +110,31 @@
 						   <div class="form-group">
 						      		<label for="birthday" class="col-sm-2 control-label">生日</label>
                 					<div class="input-group date form_date col-sm-6" data-date="" data-date-format="yyyy年mm月dd日" data-link-field="birthday" data-link-format="yyyy-mm-dd" style="padding-left:15px;">
-					                    <input class="form-control" size="16" type="text" value="" readonly>
+					                    <input class="form-control" size="16" type="text"  readonly value=<?php $birthday=$user['birthday']; echo $birthday; ?>>
 										<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 					                </div>
-					                <input type="hidden" id="birthday" value="" /><br/>
+					                <input type="hidden" id="birthday" name="birthday" value="" /><br/>
 						   </div>
 						   <div class="form-group">
 						      <label for="userAddr" class="col-sm-2 control-label">所在地</label>
 						      <div class="col-sm-4">
-						         <input type="text" class="form-control" id="userAddr" placeholder="">
+						         <input type="text" class="form-control" id="userAddr" name="address" placeholder="" value=<?php $address=$user['address']; echo $address ?>>
 						      </div>
 						   </div>
 						   <hr>
 							<div class="form-group">
 						    	<div class="col-sm-offset-2 col-sm-10">
-						         	<button type="submit" class="btn btn-default">保存</button>
+						         	<button id="submit-btn" class="btn btn-default">保存</button>
 						      	</div>
 						   </div>
-						</form>
+						</div>
 	              		
 	              	</div>
 	          </div>
 	        </div>
 	        <div class="swiper-slide">
 	            <div class="content-slide">
-	             	<div class="user-picture" style="width: 60%,margin: 20px auto">
+	             	<div class="user-picture" style="width: 60%;margin: 20px auto">
 	        			<form enctype="multipart/form-data">
 			                <input id="userPic" type="file" name="image" class="projectfile" value="${deal.image}">
 			                <br>
@@ -143,7 +151,7 @@
 	<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- 包括所有已编译的插件 -->
-
+	<script src="../js/custom.js"></script>
     <script type="text/javascript" src="../js/fileinput.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/idangerous.swiper.min.js"></script>
@@ -172,7 +180,7 @@
 
 		$(".projectfile").fileinput({
 		initialPreview: [
-            'images/user1.jpg'
+            '../images/user1.jpg'
         ],
 		initialPreviewAsData: true,
         
@@ -203,7 +211,23 @@
 		minView: 2,
 		forceParse: 0
     	});
-    
+    	
+		$("#submit-btn").click(function () {
+			$.ajax({
+				url:'../php/businesslogic/userbl/userServer.php',
+				type:"POST",
+				async:false,
+				data:$("#info-form").serialize(),
+				dataType:"json",
+				success:function (data) {
+					alert(data);
+					if(data=="TRUE"){
+						var tip = "<br><p style='color: #4cae4c'>保存成功</P>"
+						$("body").append(tip);
+					}
+				}
+			});
+		});
 	</script>
 	</body>
 </html>

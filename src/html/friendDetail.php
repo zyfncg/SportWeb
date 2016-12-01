@@ -62,10 +62,10 @@ $friends = $rows->getFriends();
                         		<span class="glyphicon glyphicon-user"></span><span class="caret"></span>
                     			</a>
                     			<ul class="dropdown-menu">
-                        			<li><a href="infoEdit.html"><span class="glyphicon glyphicon-user"></span>账户设置</a></li>
-                        			<li><a href="pwEdit.html"><span class="glyphicon glyphicon-cog"></span>密码修改</a></li>
+                        			<li><a href="infoEdit.php"><span class="glyphicon glyphicon-user"></span>账户设置</a></li>
+                        			<li><a href="pwEdit.php"><span class="glyphicon glyphicon-cog"></span>密码修改</a></li>
                         			<li class="divider"></li>
-                        			<li><a href="login.html"><span class="	glyphicon glyphicon-log-out"></span> Logout</a></li>
+                        			<li><a href="" id="logout"><span class="	glyphicon glyphicon-log-out"></span> Logout</a></li>
                     			</ul>
                     			<!-- /.dropdown-user -->
                 			</li>
@@ -98,9 +98,9 @@ $friends = $rows->getFriends();
 							<p>累计运动时间：<span><?php $time = $allsport->getTime(); echo "$time"." min" ?></span></p>
 							<?php
 								if($simple->getIsCare()){
-									echo "<label class='col-center-block'>已关注</label>";
+									echo "<button id='friend-op-btn' class='col-center-block btn'>取消关注</button>";
 								}else{
-									echo "<label class='col-center-block'>关注</label>";
+									echo "<button id='friend-op-btn' class='col-center-block btn'>关注</button>";
 								}
 							?>
 
@@ -186,6 +186,39 @@ $friends = $rows->getFriends();
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- 包括所有已编译的插件 -->
     <script src="../js/bootstrap.min.js"></script>
+	<script src="../js/custom.js"></script>
+	<script>
+		var useridText = <?php $userid=$_SESSION['userid']; echo $userid; ?>;
+		var lookidText = <?php $lookid=$_GET['friendid']; echo $lookid; ?>;
+		$("#friend-op-btn").click(function () {
+			var btntext = $("#friend-op-btn").text();
+			if(btntext=="关注"){
+				$.post("../php/businesslogic/contactbl/contact.php",
+					{
+						method:"add",
+						userid:useridText,
+						friendid:lookidText
+					},
+					function(data,status){
+//						alert("取消啊！！！");
+						$("#friend-op-btn").text("取消关注");
+					});
+			}else{
+				$.post("../php/businesslogic/contactbl/contact.php",
+					{
+						method:"del",
+						userid:useridText,
+						friendid:lookidText
+					},
+					function(data,status){
+//						alert("取消啊！！！");
+						$("#friend-op-btn").text("关注");
+					});
+			}
+
+		});
+	</script>
+
 	<?php foreach ($friends as $row) :
 		$friendid = $row->getUserid();
 		$userid = $_SESSION['userid'];

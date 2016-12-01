@@ -57,10 +57,10 @@ require '../php/businesslogic/activitybl/activity.php';
                         		<span class="glyphicon glyphicon-user"></span><span class="caret"></span>
                     			</a>
                     			<ul class="dropdown-menu">
-                        			<li><a href="infoEdit.html"><span class="glyphicon glyphicon-user"></span>账户设置</a></li>
-                        			<li><a href="pwEdit.html"><span class="glyphicon glyphicon-cog"></span>密码修改</a></li>
+                        			<li><a href="infoEdit.php"><span class="glyphicon glyphicon-user"></span>账户设置</a></li>
+                        			<li><a href="pwEdit.php"><span class="glyphicon glyphicon-cog"></span>密码修改</a></li>
                         			<li class="divider"></li>
-                        			<li><a href="login.html"><span class="	glyphicon glyphicon-log-out"></span> Logout</a></li>
+                        			<li><a href="" id="logout"><span class="	glyphicon glyphicon-log-out"></span> Logout</a></li>
                     			</ul>
                     			<!-- /.dropdown-user -->
                 			</li>
@@ -389,6 +389,7 @@ require '../php/businesslogic/activitybl/activity.php';
     <!-- 包括所有已编译的插件 -->
     <script src="../js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+	<script src="../js/custom.js"></script>
     <script>
     	$('.form_datetime').datetimepicker({
         weekStart: 1,

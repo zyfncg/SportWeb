@@ -5,7 +5,7 @@
  * Date: 2016/11/3
  * Time: 17:09
  */
-require $_SERVER['DOCUMENT_ROOT'].'/src/php/database/database.php';
+require $_SERVER['DOCUMENT_ROOT'].'/src/php/businesslogic/statisticbl/statisticHandle.php';
 class UserHandle{
 
     private $db;
@@ -18,6 +18,30 @@ class UserHandle{
         $this->db = DB::getInstance();
     }
 
+    public function getHostInfo($hostid){
+        $picURL = null;
+        $username = null;
+        $grade = null;
+        $distance = null;
+        $time = null;
+
+
+        $sql = "select * from users where userid='$hostid'";
+        $ret = $this->db->find($sql);
+        if($row = $ret->fetchArray(SQLITE3_ASSOC)){
+            $picURL = $row['picURL'];
+            $username = $row['username'];
+            $grade = $row['grade'];
+
+        }
+        $statHandle = new StatisticHandle();
+        $sport = $statHandle->getStatisticsAll($hostid);
+        $distance = $sport->getDistance();
+        $time = $sport->getTime();
+
+        $user = array("userid"=>$hostid,"picURL"=>$picURL,"username"=>$username,"grade"=>$grade,"distance"=>$distance, "time"=>$time);
+        return $user;
+    }
 
     public function getUser($userid){
         $username = null;
@@ -36,11 +60,11 @@ class UserHandle{
             $birthday = $row['birthday'];
             $gender = $row['gender'];
             $address = $row['address'];
-            $intro = $row['intoe'];
+            $intro = $row['intro'];
         }
 
         $user = array("userid"=>$userid,"username"=>$username,"address"=>$address,"grade"=>$grade,
-                       "birthday"=>$birthday,"intor"=>$intro,"gender"=>$gender);
+                       "birthday"=>$birthday,"intro"=>$intro,"gender"=>$gender);
         return $user;
     }
 

@@ -3,13 +3,14 @@ session_start();
 if(!isset($_SESSION['userid'])){
 	header('Location:login.html');
 }else{
-	echo $_SESSION['userid']."this is userid<br>";
+//	echo $_SESSION['userid']."this is userid<br>";
 }
 //	if($_SESSION['userid']==""){
 //		echo 'wooooooooo';
 //
 //	}
 require '../php/businesslogic/contactbl/contact.php';
+include '../php/businesslogic/userbl/userServer.php';
 $rows = getFriends($_SESSION['userid']);
 ?>
 <!DOCTYPE HTML>
@@ -61,10 +62,10 @@ $rows = getFriends($_SESSION['userid']);
                         		<span class="glyphicon glyphicon-user"></span><span class="caret"></span>
                     			</a>
                     			<ul class="dropdown-menu">
-                        			<li><a href="infoEdit.html"><span class="glyphicon glyphicon-user"></span>账户设置</a></li>
-                        			<li><a href="pwEdit.html"><span class="glyphicon glyphicon-cog"></span>密码修改</a></li>
+                        			<li><a href="infoEdit.php"><span class="glyphicon glyphicon-user"></span>账户设置</a></li>
+                        			<li><a href="pwEdit.php"><span class="glyphicon glyphicon-cog"></span>密码修改</a></li>
                         			<li class="divider"></li>
-                        			<li><a href="login.html"><span class="	glyphicon glyphicon-log-out"></span> Logout</a></li>
+                        			<li><a href="" id="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                     			</ul>
                     			<!-- /.dropdown-user -->
                 			</li>
@@ -84,9 +85,17 @@ $rows = getFriends($_SESSION['userid']);
 			<div class="row">
 				<div class="col-md-4 col-xs-12">
 					<div class="userinfo" style="height: 350px">
+						<?php $hostHandle = new UserHandle();
+							$host = $hostHandle->getHostInfo($_SESSION['userid']);
+							$picURL = $host['picURL'];
+							$usernmae = $host['username'];
+							$grade = $host['grade'];
+							$distance = $host['distance'];
+							$time = $host['time'];
+						?>
 						<div class="user-header">
 							<div class="user-header-img tc">
-								<img src="../images/user1.jpg">
+								<img src=<?php echo $picURL; ?>>
 							</div>
 						</div>
 						<div class="tc">
@@ -182,6 +191,7 @@ $rows = getFriends($_SESSION['userid']);
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- 包括所有已编译的插件 -->
     <script src="../js/bootstrap.min.js"></script>
+	<script src="../js/custom.js"></script>
 
 	<?php foreach ($rows as $row) :
 		$friendid = $row->getUserid();
