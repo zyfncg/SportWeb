@@ -16,10 +16,12 @@ $rows = getFriends($_SESSION['userid']);
 <!DOCTYPE HTML>
 <html>
 	<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Sport</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Sport</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="keywords" content="运动网站,运动,社交,活动，sport"/>
+		<meta name="description" content="sportlift运动社交网站为热爱运动的人群提供运动数据统计，运动社交和活动组织等服务"/>
 
 	<link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	
