@@ -1,11 +1,8 @@
 <?php
 session_start();
-if(!isset($_SESSION['userid'])){
+if(!isset($_SESSION['userid']) || !isset($_GET['friendid'])){
 	header('Location:login.html');
-}else{
-//	echo $_SESSION['userid']."this is userid<br>";
 }
-
 require '../php/businesslogic/contactbl/contact.php';
 $rows = getDetail($_SESSION['userid'],$_GET['friendid']);
 $simple = $rows->getSimple();
@@ -189,7 +186,14 @@ $friends = $rows->getFriends();
     <script src="../js/bootstrap.min.js"></script>
 	<script src="../js/custom.js"></script>
 	<script>
-		var useridText = <?php $userid=$_SESSION['userid']; echo $userid; ?>;
+		var user = function () {
+			var userid = <?php $userid=$_SESSION['userid']; echo $userid; ?>;
+			return {
+				getUserid:function () {
+					return userid;
+				}
+			}
+		}();
 		var lookidText = <?php $lookid=$_GET['friendid']; echo $lookid; ?>;
 		$("#friend-op-btn").click(function () {
 			var btntext = $("#friend-op-btn").text();
@@ -197,7 +201,7 @@ $friends = $rows->getFriends();
 				$.post("../php/businesslogic/contactbl/contact.php",
 					{
 						method:"add",
-						userid:useridText,
+						userid:user.getUserid(),
 						friendid:lookidText
 					},
 					function(data,status){
@@ -208,7 +212,7 @@ $friends = $rows->getFriends();
 				$.post("../php/businesslogic/contactbl/contact.php",
 					{
 						method:"del",
-						userid:useridText,
+						userid:user.getUserid(),
 						friendid:lookidText
 					},
 					function(data,status){
