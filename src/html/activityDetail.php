@@ -261,8 +261,6 @@ $actInfo = $actHandle->getActivityInfo($activityid,$userid);
         });
         $("#join-btn").click(function () {
 
-            alert(activityidStr);
-            alert(useridStr);
             $.post("../php/businesslogic/activitybl/activity.php",
                 {
                     method:"joinactivity",

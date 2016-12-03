@@ -25,7 +25,7 @@ class ContactHandle{
 
         while($row = $ret->fetchArray(SQLITE3_ASSOC)){
             $friendid = $row['friendid'];
-            $sql = "select userid,username,grade,picURL from users where userid = '$friendid'";
+            $sql = "select userid,username,grade,picURL from users where userid = '$friendid' order by grade";
             $result = $this->db->find($sql);
             if($rowfriend = $result->fetchArray(SQLITE3_ASSOC)){
                 $friendid1 = $rowfriend['userid'];

@@ -6,6 +6,7 @@ if(!isset($_SESSION['userid'])){
 //	echo $_SESSION['userid']."   this is userid<br>";
 }
 require '../php/businesslogic/activitybl/activity.php';
+include '../php/businesslogic/userbl/userServer.php';
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -80,14 +81,21 @@ require '../php/businesslogic/activitybl/activity.php';
 			
 			<div class="row">
 				<div class="col-md-4">
+
 					<div class="userinfo row" style="height: 280px">
+						<?php $hostHandle = new UserHandle();
+						$host = $hostHandle->getHostInfo($_SESSION['userid']);
+						$picURL = $host['picURL'];
+						$usernmae = $host['username'];
+
+						?>
 						<div class="user-header">
 							<div class="user-header-img tc">
-								<img src="../images/user1.jpg">
+								<img src=<?php echo $picURL; ?>>
 							</div>
 						</div>
 						<div class="tc">
-							<h1>沉迷web</h1>
+							<h1><?php echo $usernmae;?></h1>
 						</div>
 
 					</div>
@@ -167,6 +175,7 @@ require '../php/businesslogic/activitybl/activity.php';
 									<?php
 										$actHandle = new ActivityHandle();
 										$rows = $actHandle->getActivityList();
+
 										foreach ($rows as $row):
 									?>
 									<li>
@@ -201,6 +210,7 @@ require '../php/businesslogic/activitybl/activity.php';
 									<?php endforeach; ?>
 
 								</ul>
+								<br>
 							</div>
 						</div>
 						<div class="tab-pane fade" id="create-activity">
@@ -431,6 +441,7 @@ require '../php/businesslogic/activitybl/activity.php';
 				});
 
 		});
+
     </script>
 	</body>
 </html>
