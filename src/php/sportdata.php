@@ -6,17 +6,22 @@
  * Time: 19:28
  */
 include_once $_SERVER['DOCUMENT_ROOT'].'/src/php/database/database.php';
-if(isset($_POST['upload'])){
-    $userid = htmlspecialchars($_POST['userid']);
-    $password = $_POST['password'];
+$jsondata =  file_get_contents("php://input");
+$phpdata = json_decode($jsondata,true);
+if(isset($phpdata['userid'])){
+    $doc = array("result"=>"get");
+    echo json_encode($doc);
+    $userid = htmlspecialchars($phpdata['userid']);
+    $password = $phpdata['password'];
 
     $db = DB::getInstance();
     $sql = "select * from users where userid = '$userid' and password = '$password'";
 
     $check_query = $db->find($sql);
     if($result = $check_query->fetchArray(SQLITE3_ASSOC)){
-        $datalist = json_decode($_POST['data'],true);
-        foreach($datalist as $data){
+//        $datalist = json_decode($phpdata['data'],true);
+
+        foreach($phpdata['data'] as $data){
             $day = $data['day'];
             $distance = $data['distance'];
             $time = $data['time'];
@@ -26,19 +31,25 @@ if(isset($_POST['upload'])){
                 $sql = "update sport set distance='$distance',sportTime='$time' where userid='$userid' and daydate='$day'";
                 $ret1 = $db->operate($sql);
                 if(!$ret1){
-                    echo $ret1;
+                    $doc = array("result"=>"更新失败");
+                    echo json_encode($doc);
                 }
             }else{
                 $sql = "insert into sport VALUES ('$userid','$day',$distance,$time)";
                 $ret1 = $db->operate($sql);
                 if(!$ret1){
-                    echo $ret1;
+                    $doc = array("result"=>"插入失败");
+                    echo json_encode($doc);
                 }
             }
         }
+
+        exit;
     }else{
-        $doc = array("FALSE"=>"用户名或密码错误");
+        $doc = array("result"=>"FALSE");
         echo json_encode($doc);
         exit;
     }
 }
+$doc = array("result"=>"error");
+echo json_encode($doc);

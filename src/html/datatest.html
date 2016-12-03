@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery.js"></script>
+</head>
+<body>
+<button id="upload">提交</button>
+
+<script>
+    $("#upload").click(function () {
+        var updata = {"upload":true,"data": [{"distance": 5.89, "day": "2016-03-11", "time": 108}, {"distance": 2.58, "day": "2016-03-12", "time": 17}, {"distance": 8.84, "day": "2016-03-13", "time": 132}, {"distance": 4.52, "day": "2016-03-14",
+        "time": 62}, {"distance": 7.59, "day": "2016-03-15", "time": 129}, {"distance": 0, "day": "2016-03-16", "time": 0}, {"distance": 2.57, "day": "2016-03-17", "time": 21}, {"distance": 3.2, "day": "2016-03-18",
+            "time": 74}, {"distance": 0.6, "day": "2016-03-19", "time": 0}, {"distance": 7.12, "day": "2016-03-20", "time": 96}, {"distance": 11.7, "day": "2016-03-21", "time": 155}, {"distance": 0, "day": "2016-03-22", "time": 0}, {"distance": 0, "day": "2016-03-23", "time": 0}, {"distance": 9.05, "day": "2016-03-24", "time": 164}, {"distance": 0, "day": "2016-03-25", "time": 0}, {"distance": 0, "day": "2016-03-26", "time": 0},
+        {"distance": 2.52, "day": "2016-03-27", "time": 55}, {"distance": 2.58, "day": "2016-03-28", "time": 18}, {"distance": 4.54, "day": "2016-03-29", "time": 85}, {"distance": 0.38, "day": "2016-03-30", "time": 22}
+    ], "password": "123456", "userid": "13812341234"};
+
+        $.ajax({
+            url: "../php/sportdata.php",
+            type: "POST",
+            data: {"password": "123456", "userid": "13812341234"},
+            dataType: "json",
+            success: function (data) {
+                alert(data);
+            },
+            error: function (data) {
+                alert(data);
+            }
+        });
+    });
+
+</script>
+
+</body>
+</html>
