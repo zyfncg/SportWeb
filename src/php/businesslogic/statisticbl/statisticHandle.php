@@ -23,7 +23,7 @@ class StatisticHandle{
     public function getStatisticsToday($userid){
         $today = date('Y-m-d');
         $data = $this->getDataByDay($userid,$today);
-        $sql = "select * from sport where daydate='$today' and userid in (select friendid from contact where hostid='$userid') order by distance,sportTime desc";
+        $sql = "select * from sport where daydate='$today' and userid in (select friendid from contact where hostid='$userid') order by distance desc";
         $ret = $this->db->find($sql);
         $rank = 1;
         $isSet = 0;
@@ -32,6 +32,7 @@ class StatisticHandle{
             if($data->getDistance()>=$distance){
                 $data->setRank($rank);
                 $isSet = 1;
+                break;
             }else{
                 $rank = $rank + 1;
             }

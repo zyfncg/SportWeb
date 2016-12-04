@@ -53,7 +53,7 @@
             <div class="collapse navbar-collapse navbar-responsive-collapse" id="top_menu">
 						<ul class="nav navbar-nav navbar-right">
 							<li><a href="index.html"><p class="top-tab">首页</p></a></li>
-							<li  class="active"><a href="mySport.html"><p class="top-tab">我的运动</p></a></li>
+							<li  class="active"><a href="mySport.php"><p class="top-tab">我的运动</p></a></li>
 							<li><a href="friend.php"><p class="top-tab">好友</p></a></li>
 							<li><a href="activity.php"><p class="top-tab">活动</p></a></li>
 							
